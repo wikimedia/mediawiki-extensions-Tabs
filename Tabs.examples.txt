@@ -1,0 +1,89 @@
+<tab>
+This is the simplest togglebox, with just a tab tag without any attributes, surrounding this text.
+
+Its label will switch between the value of [[MediaWiki:tabs-toggle-open-placeholder]] and [[MediaWiki:tabs-toggle-close-placeholder]].
+</tab>
+
+<tabs style="font-weight:bold;" class="foo" id="bar">
+<tab name="hello">
+Tab 1 is a named tab without specified index.
+</tab>
+<tab name="world" index="2">
+Tab 2 is a named tab, but with a specified index equal to the default 2.
+</tab>
+<tab index="4" name="">
+Tab 3 is an unnamed tab, with a specified index (4) of higher than the default (3), which makes it fall back to the name attribute's value. Its name attribute, even though it's defined, is left blank though, so it will fall back to the default, defined in [[MediaWiki:tabs-tab-label-placeholder]].
+</tab>
+<tab index="1">
+This is another tab tag, but has a specified ''index'' of 1, so this shows when tab 1 is selected
+</tab>
+<tab name="world" style="font-style:italic;" class="bar" id="foo" title="See?">
+This is another tab tag, but has a specified ''name'' of equal to the second tab's ("world"), so this shows when tab 2 is selected. It also has a defined style, class, id and title attribute.
+</tab>
+<tab name="Tab 3">
+This is another tab tag, but has a specified ''name'' of equal to the third tab's ("Tab 3", the default value). This still shows when tab 3 is selected, even though tab 3 had no name specified itself.
+</tab>
+
+This bottom text always shows, since it's not placed within a tab tag. This parent ''tabs'' tag is also a demonstration of the style, class and id attributes.
+</tabs>
+
+<tabs container="border-color:red;">
+This is an <tab index="1" name="happy">inline</tab> example<tab index="2" name="sad">&nbsp;of inline tabs</tab>, which <tab index="1">demonstrates</tab><tab index="2">shows</tab><tab index="3">gives you</tab> the freedom in choosing where <tab index="2">you want</tab> to place your nested tabs.
+<tab index="3" name="meh" width="200">
+And this part will only show for tab 3.
+
+Look, it's multiline!
+
+This also demonstrates that tab contents use the <code>display:inline-block;</code> style, which can be changed by either adding the ''inline'' or ''block'' attribute, and not setting its value to "false" or "0". 
+</tab>
+<tab index="3" block>
+This part also only shows for tab 3, but this has a ''block'' attribute that's not set to "false" or "0".
+</tab>
+
+Note that the third tab has the default tab label. This is because a tab tag without defined name was used first, and then only after that the name was defined. It is important to define the name in the first usage of the tab, because only the name assigned to the first usage will be used.
+</tabs>
+
+<tab openname="Open this tab" closename="Close this tab" name="you won't see this" collapsed>
+This togglebox demonstrates the use of openname and closename attributes, and has a ''collapsed'' attribute that's not set to "false" or "0".<br/>
+It also has a defined name attribute, which is not used, since the open/closename attributes are defined.
+</tab>
+<tab name="Open/close" index="1" title="The title attribute works too." container="background:#ABCDEF;padding:0;">This togglebox has a name, container and title attribute, as well as an index attribute. The index attribute has no purpose in unnested tab tags though, so that is ignored.</tab>
+
+Here you can see an inline togglebox. <tab inline collapsed>It just shows up out of thin air!</tab> This togglebox has an ''inline'' attribute that's not set to "false" or "0".
+
+<tabs>
+<tab name="foo"></tab>
+<tab name="bar"></tab>
+This tabsbox has a list of tabs with a name defined earlier at the top of this tab. This is useful when making templates that might want to use tabs to switch at multiple locations within its body. Referring to the tabs can then be done simply via assigning the index attribute to it.
+
+----
+
+This text has <tab index="1">a lot of</tab><tab index="2">many</tab> switching parts, <tab index="1">which</tab><tab index="2">and that</tab> makes it <tab index="1">easier</tab><tab index="2">simpler</tab> to just use <tab index="1">the same</tab><tab index="2">identical</tab> syntax <tab index="1">everywhere</tab><tab index="2">for each tab</tab>.
+</tabs>
+
+<tab name="{{#if:1||No #ifs in the attributes}}">This togglebox's contents do {{#if:1||not}} allow parser functions like <code>#if:</code> to be used</tab>
+
+<tabs>
+This tabs tag is left without any &lt;tab&gt; tags in it. No tabs will be rendered, but the styling of the tab content will remain.
+</tabs>
+
+<tab>
+This is an example of a <code>&lt;tabs&gt;</code> tag nested inside a <code>&lt;tab&gt;</code> tag.
+
+<tabs>
+{{#tag:tab|This is a tab inside a tabs inside a tab tag.}}
+{{#tag:tab|And this is tab 2}}
+</tabs>
+</tab>
+
+<tabs>
+<tab>
+This is a test of a <code>&lt;tab&gt;</code> tag within another <code>&lt;tab&gt;</code> tag within a <code>&lt;tabs&gt;</code> tag: {{#tag:tab|But you won't see this until you open it|collapsed=true}}
+</tab>
+</tabs>
+
+<tabs>
+{{#tag:tab|
+{{#tag:tabs|<tab>If for some reason someone thinks he's funny by nesting 2 <code>&lt;tabs&gt;</code> tags within each other, this will happen.</tab>}}
+}}
+</tabs>

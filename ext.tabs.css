@@ -1,0 +1,104 @@
+/* Layout styles */
+
+/**
+ * The direct-child selector (a > b) should be used whenever possible, except for elements within .tabs-content,
+ * to prevent styling issues with nested tags. Use >*> whenever necessary, as this doesn't increase specificity.
+ */
+
+/**
+ * Regarding the usage of the body:not(oldbrowser) selector:
+ * 
+ * All browsers with support for :not() also support :checked
+ * Putting body:not(oldbrowser) as part of the selector will cause only browsers with :checked support to render the styles
+ * IE is not the only browser that lacks :checked support, so conditional comments are not an option here.
+ * :not(oldbrowser) is chosen as selector, since the <body> tag can't also be an <oldbrowser> tag at the same time.
+ * The only browsers with :checked support, but without :not() support are Opera 9.0-9.5 and Safari 3.1.*
+ * Those browsers will have to rely on the JS alternative. If JS is disabled for them, all tabs will show at once.
+ * Sources: https://developer.mozilla.org/en-US/docs/Web/CSS/:checked#Browser_compatibility,
+ *          https://developer.mozilla.org/en-US/docs/Web/CSS/:not#Browser_compatibility
+ */
+
+body:not(oldbrowser) .tabs-content {display:none;} /* this needs to be a seperate style, since old browsers will ignore the rule with :not() altogether */
+/**
+ * max-height prevents font-boosting on tabs in mobile browsers even when not in mobile skin.
+ * Font-boosting causes weird differences between tab contents and surrounding text (most specifically for inline tabs), so disabling it altogether.
+ * If font-boosting doesn't create difference in size between text and inline tab contents anymore, remove or comment out the next line.
+ */
+.tabs, .tabs * {max-height:1000000px;}
+.tabs-input, .tabs-close {display:none;}
+.tabs-tabbox, .tabs-togglebox {margin:10px 0;}
+.tabs-label {
+	cursor:pointer;
+	padding:2px 10px;
+	background-color:#DDD;
+}
+.tabs-tabbox > .tabs-label {
+	margin:0 2px;
+	border-bottom:none;
+	border-radius:7px 7px 0 0;
+	position:relative;
+	display:inline-block;
+}
+.tabs-container, .tabs-label {border:1px solid #AAA;}
+.tabs-inline {display:inline-block;}
+.tabs-block {display:block;}
+/**
+ * Regarding the * html and *+html selectors
+ * 
+ * IE ver. 5.5-7 support no inline-block on divs.
+ * These selectors manage to select the <html> tag in versions 6 and 7 of IE, respectively.
+ * Do not change .tabs-togglebox to a <span> just for supporting these versions of IE though, because block-level elements will occur within it
+ *  	and it is not allowed to nest block-level elements inside span elements.
+ * Sources: http://blogs.msdn.com/b/ie/archive/2005/09/02/460115.aspx
+ *          http://www.webdevout.net/css-hacks#in_css-selectors
+ *          https://en.wikipedia.org/wiki/CSS_hack#Star_plus_hack
+ */
+* html .tabs-inline {display:inline;}/*IE6 and below*/
+*+html .tabs-inline {display:inline;}/*IE7 only*/
+
+/**
+ * The following is an alternative to the non-IE<9 `:first-of-type` and selects the first tabs-label,
+ *     since only the first label is positioned behind 2 inputs in a row.
+ */
+.tabs-tabbox > .tabs-input+ .tabs-input+ .tabs-label {margin-left:10px;}
+.tabs-tabbox > .tabs-container {
+	margin-top:-1px;
+	padding:2px 5px;
+	border-radius:8px;
+	position:relative;
+	width:inherit; /*This will cause the width to be inherited from the main tab, and enables the possibility to use width:inherit within the tab itself too */
+	z-index:1; /* unselected tab is positioned below the content this way */
+}
+.tabs-togglebox > .tabs-container {
+	display:inline-block; /* this is to make the box the minimal width it needs to be */
+	padding:0;
+	border-radius:8px;
+}
+.tabs-togglebox >*> .tabs-label {
+	display:block;
+	text-align:center;
+	border-radius:7px;
+	margin:0;
+	border:none;
+}
+.tabs-togglebox >*> .tabs-content {
+	padding:0 5px;
+	border-radius:0 0 7px 7px;
+	border-top:1px solid #AAA;
+	vertical-align:top;
+}
+/* Interactivity styles */
+
+.tabs-label:hover {background-color:#CCC;}
+.tabs-label:active {background-color:#CCE;}
+.tabs-tabbox > .tabs-input:checked + .tabs-label,
+.tabs-input-0:checked + .tabs-input-1 + .tabs-label {
+	z-index:2;
+	background-color:#FFF;
+}
+.tabs-togglebox >*> .tabs-input:checked + .tabs-label {border-radius:7px 7px 0 0;}
+.tabs-togglebox >*> .tabs-input:checked ~ .tabs-content {
+	display:block;
+}
+.tabs-togglebox >*> .tabs-input:checked + * .tabs-close {display:inline;} /* tabs-close is hidden by default, tabs-open is shown by default. Swap this when the tab is opened. */
+.tabs-togglebox >*> .tabs-input:checked + * .tabs-open {display:none;}
