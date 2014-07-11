@@ -1,11 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Pim (Joeytje50)"
-        ]
-    },
-    "tabs-desc": "Adds <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> and <code>&lt;tabdef&gt;</code> tags for creating tabbed layout.",
-    "tabs-tab-label-placeholder": "Tab $1",
-    "tabs-toggle-open-placeholder": "Show contents",
-    "tabs-toggle-close-placeholder": "Hide contents"
+	"@metadata": {
+		"authors": [
+			"Pim (Joeytje50)"
+		]
+	},
+	"tabs-desc": "Adds <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> and <code>&lt;tabdef&gt;</code> tags for creating tabbed layout.",
+	"tabs-tab-label": "Tab $1",
+	"tabs-toggle-open": "Show contents",
+	"tabs-toggle-close": "Hide contents",
+	"tabs-dropdown-label": "Show dropdown",
+	"tabs-dropdown-bgcolor": "white"
 }

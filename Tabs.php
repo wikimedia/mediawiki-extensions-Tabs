@@ -20,7 +20,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
+ * 
  * @file
  */
 
@@ -28,22 +28,24 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'Tabs',
 	'author'         => 'Joeytje50',
-	'url'            => '',
+	'url'            => 'https://www.mediawiki.org/wiki/Extension:Tabs',
 	'descriptionmsg' => 'tabs-desc',
 );
 
 $dir = __DIR__ . '/';
 $wgAutoloadClasses['Tabs'] = $dir . 'Tabs.body.php';
-$wgMessagesDirs['Tabs'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Tabs'] =  $dir . 'Tabs.i18n.php';
+$wgExtensionMessagesFiles['TabsMagic'] =  $dir . 'Tabs.i18n.magic.php';
 $wgHooks['ParserFirstCallInit'][] = 'Tabs::init';
 $wgResourceModules['ext.tabs'] = array(
 	'scripts' => 'ext.tabs.js',
 	'styles' => 'ext.tabs.css',
 	'messages' => array(
-		'tabs-tab-label-placeholder',
-		'tabs-toggle-open-placeholder',
-		'tabs-toggle-close-placeholder',
+		'tabs-tab-label',
+		'tabs-toggle-open',
+		'tabs-toggle-close',
+		'tabs-dropdown-label',
+		'tabs-dropdown-bgcolor',
 	),
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Tabs',
