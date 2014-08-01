@@ -129,7 +129,7 @@ This dropdown also has its <code>style</code> attribute set to <code>style="widt
 ===== Background-color for dropdowns =====
 
 <tab dropdown bgcolor="salmon}body{font-weight:bold;">
-*This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>. Just defining a <code>background-color</code> style would not work. 
+*This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>. Just defining a <code>background-color</code> style would not work.
 </tab>
 
 ===== Lists and links =====

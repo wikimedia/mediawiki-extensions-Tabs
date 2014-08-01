@@ -224,7 +224,7 @@ body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
 .tabs-label:active, .tabs-label:focus {
 	background-color:#CCE;
 }
-.tabs-tabbox > .tabs-input:checked + .tabs-label, 
+.tabs-tabbox > .tabs-input:checked + .tabs-label,
 .tabs-input-0:checked + .tabs-input-1 + .tabs-label {
 	z-index:2;
 	background-color:#FFF;
@@ -279,7 +279,7 @@ body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
 
 /**
  * The following is an alternative toggle system for Android Browser using <detail> and <summary> tags
- * which is based on http://stackoverflow.com/q/21357641/1256925 
+ * which is based on http://stackoverflow.com/q/21357641/1256925
  */
 
 summary::-webkit-details-marker {

@@ -4,7 +4,7 @@
 			"Bjankuloski06"
 		]
 	},
-	"tabs-desc": "Додава ознаки <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> и <code>&lt;tabdef&gt;</code> за создавање на распоред со јазичиња.",
+	"tabs-desc": "Додава ознаки <code>&lt;tabs&gt;</code> и <code>&lt;tab&gt;</code> за создавање на распоред со јазичиња.",
 	"tabs-tab-label": "Јазиче $1",
 	"tabs-toggle-open": "Прикажи содржина",
 	"tabs-toggle-close": "Скриј содржина",

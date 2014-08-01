@@ -35,7 +35,7 @@ $(function() {
 			return false; // stop the $.each() function after the first match.
 		});
 	}
-	
+
 	/*
 	 * System to fix toggle boxes in Android Browser
 	 * Browser detection based on http://stackoverflow.com/a/15591516/1256925

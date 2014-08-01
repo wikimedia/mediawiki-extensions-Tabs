@@ -4,7 +4,7 @@
 			"Metalhead64"
 		]
 	},
-	"tabs-desc": "Ergänzt die Tags <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> und <code>&lt;tabdef&gt;</code> zum Erstellen von Registerkarten.",
+	"tabs-desc": "Ergänzt die Tags <code>&lt;tabs&gt;</code> und <code>&lt;tab&gt;</code> zum Erstellen von Registerkarten.",
 	"tabs-tab-label": "Registerkarte $1",
 	"tabs-toggle-open": "Inhalte anzeigen",
 	"tabs-toggle-close": "Inhalte ausblenden",

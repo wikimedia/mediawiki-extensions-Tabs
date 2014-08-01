@@ -4,7 +4,7 @@
 			"Pim (Joeytje50)"
 		]
 	},
-	"tabs-desc": "Voegt <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> and <code>&lt;tabdef&gt;</code> toe voor opmaak met tabbladen.",
+	"tabs-desc": "Voegt <code>&lt;tabs&gt;</code> en <code>&lt;tab&gt;</code> toe voor opmaak met tabbladen.",
 	"tabs-tab-label": "Tab $1",
 	"tabs-toggle-open": "Inhoud weergeven",
 	"tabs-toggle-close": "Inhoud verbergen",
