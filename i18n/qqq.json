@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pim (Joeytje50)"
+			"Pim (Joeytje50)",
+			"Liuxinyu970226"
 		]
 	},
 	"tabs-desc": "{{desc|name=Tabs|url=http://www.mediawiki.org/wiki/Extension:Tabs}}",
-	"tabs-tab-label": "The default label for a tabs menu. Parameter $1 stands for the index of the tab.",
+	"tabs-tab-label": "The default label for a tabs menu. Parameter $1 stands for the index of the tab.\n{{Identical|Tab}}",
 	"tabs-toggle-open": "The default opening label for toggle boxes.",
 	"tabs-toggle-close": "The default closing label for toggle boxes.",
 	"tabs-dropdown-label": "The default label for a dropdown menu.",
