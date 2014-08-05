@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"tabs-tab-label": "Karta $1",
+	"tabs-toggle-open": "Pokaż zawartość",
+	"tabs-toggle-close": "Ukryj zawartość",
+	"tabs-dropdown-label": "Pokaż listę rozwijaną"
+}
