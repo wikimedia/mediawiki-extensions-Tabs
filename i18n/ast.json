@@ -4,7 +4,7 @@
 			"Xuacu"
 		]
 	},
-	"tabs-desc": "Amiesta les etiquetes <code>&lt;tabs&gt;</code>, <code>&lt;tab&gt;</code> y <code>&lt;tabdef&gt;</code> pa crear un diseñu con llingüetes.",
+	"tabs-desc": "Amiesta les etiquetes <code>&lt;tabs&gt;</code> y <code>&lt;tab&gt;</code> pa crear un diseñu con llingüetes.",
 	"tabs-tab-label": "Llingüeta $1",
 	"tabs-toggle-open": "Amosar conteníu",
 	"tabs-toggle-close": "Anubrir conteníu",
