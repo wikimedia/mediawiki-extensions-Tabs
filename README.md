@@ -26,7 +26,7 @@ It also has the following internationalisation messages associated with it:
 
 '''Note:''' - This extension uses the <code>bgcolor</code> attribute for dropdown menus. This is in no way meant as encouragement for the use of this deprecated attribute anywhere other than this tag.
 
-For both the <code>&lt;tab&gt;</code> and <code>&lt;tab&gt;</code> tags, parser functions ''can'' be used within the content of the tag, but ''not'' in the attributes. To use parser functions within the attributes, the <code>#tag:tabs</code> or <code>#tag:tab</code> parser functions should be used. The [[#Parser function|<code>#tab</code> parser function]] will also work, but since the only attributes it can define are the <code>index</code> and <code>name</code> attributes, these don't allow complete support.
+For both the <code>&lt;tab&gt;</code> and <code>&lt;tabs&gt;</code> tags, parser functions ''can'' be used within the content of the tag, but ''not'' in the attributes. To use parser functions within the attributes, the <code>#tag:tabs</code> or <code>#tag:tab</code> parser functions should be used. The [[#Parser function|<code>#tab</code> parser function]] will also work, but since the only attributes it can define are the <code>index</code> and <code>name</code> attributes, these don't allow complete support.
 
 For example, this will not work:
 
@@ -92,7 +92,7 @@ Dropdown menus are heavily based on the code for toggle boxes, so will also rese
 
 Since dropdown menus use the <code>&lt;menu&gt;</code> tag for their content, it is permitted to use <code>&lt;li&gt;</code> tags directly within the dropdown menu's contents. Any other content is also allowed.
 
-Dropdown menus will convert all list items and links placed within to specially styled list items. The only exception is that links show as they normally do when placed within unordered lists ([http://www.mediawiki.org/wiki/Help:Lists any line starting with <code>*</code>]). This is also the only difference between ordered and unordered lists.
+Dropdown menus will convert all list items and links placed within to specially styled list items. The only exception is that links ''only'' show as they normally do when placed within unordered lists ([http://www.mediawiki.org/wiki/Help:Lists any line starting with <code>*</code>]). In ordered lists, or outside list items, they take up the full list item. This is also the only difference between ordered and unordered lists.
 
 Any nested lists will be rendered as sub-menus in the dropdown menu. Nested lists are created by starting a line with [http://www.mediawiki.org/wiki/Help:Lists multiple <code>*</code> or <code>#</code> characters]. There is one limitation with this however: Individual nested lists can not alternate between ordered and unordered lists. Seperate levels can, however. For example, this is not allowed:
 <pre>
@@ -129,7 +129,8 @@ This dropdown also has its <code>style</code> attribute set to <code>style="widt
 ===== Background-color for dropdowns =====
 
 <tab dropdown bgcolor="salmon}body{font-weight:bold;">
-*This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>. Just defining a <code>background-color</code> style would not work.
+This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>.
+Just defining a <code>background-color</code> style would not work.
 </tab>
 
 ===== Lists and links =====
@@ -230,7 +231,7 @@ These have the following effects:
 #*If the entered value contains only whitespace or is left empty, the index of that tab within the parser function is assumed.
 #No indices or names are defined here, so the indices of the tabs within the parser functions are automatically assigned as index.
 #The second tab will automatcally get <code>index="1"</code>, and the third tab will have no content:
-#*If the third tab has a name defined in the list of names, then a [[#Self-closing tabs|self-closing tag.
+#*If the third tab has a name defined in the list of names, then a [[#Self-closing tabs|self-closing tag]].
 #*If the third tab has an index defined, this tab is skipped, and no output is generated for this tab.
 #This will define three tabs, "name 1", "name 2" and "name 3" using the [[#Self-closing tabs|self-closing syntax]].
 #When the content of a tab is <code>$n</code> (where <code>n</code> is the place of the tab in the parser function), the contents of that tab are copied over to the tab that has <code>$n</code> in it. This only works if the tab contains nothing other than <code>$n</code>, and the parser function's <code>n</code>th parameter is defined and not empty.
@@ -260,6 +261,14 @@ This line of text will show for every tab you view. It is not placed within <cod
 <tab index="2">This seperate tab isn't forced to a new line, since it's short enough.</tab>
 <tab index="3" inline>This is a seperate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.</tab>
 <tab index="4" block>Despite fitting on the previous line, the <code>block</code> attribute forces this seperate tab to a new line</tab>
+</tabs>
+
+===== <code>plain</code> tab interfaces =====
+
+<tabs plain style="width:250px;">
+<tab>This tab interface doesn't have a box surrounding it, but just has buttons above it.</tab>
+<tab>This makes it a bit easier to customise the box</tab>
+<tab>It is also more useful for storing tabbed tables in</tab>
 </tabs>
 
 ===== Inline switching parts =====

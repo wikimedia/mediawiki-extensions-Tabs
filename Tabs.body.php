@@ -124,7 +124,8 @@ class Tabs {
 			$containAttrStr = $this->getSafeAttrs($attr);
 			if (isset($attr['bgcolor'])) {
 				// preg_split filters for ;{} characters and CSS comments, to prevent injection of any other styles than just the background-color. Only the input before the filtered characters will be included.
-				$bgcolor = preg_split('/[;{}]|\/\*/', trim(htmlspecialchars($attr['bgcolor'])))[0];
+				$bgsplit = preg_split('/[;\{\}]|\/\*/', trim(htmlspecialchars($attr['bgcolor'])));
+				$bgcolor = $bgsplit[0];
 				$background =  "data-bgcolor=\"$bgcolor\"";
 				$containAttrStr .= " $background";
 				$css = "<style type=\"text/css\">.tabs-dropdown[$background] .tabs-content, .tabs-dropdown[$background] .tabs-container, .tabs-dropdown[$background] li, .tabs-dropdown[$background] ul, .tabs-dropdown[$background] ol {background-color:$bgcolor}</style>";
@@ -278,6 +279,8 @@ class Tabs {
 		foreach ($safeAttrs as $i) {
 			if (isset($attr[$i])) {
 				$safe[$i] = htmlspecialchars(trim($attr[$i]));
+				if ($i == 'style') //escape the urls, to prevent users from loading images from disallowed sites.
+					$safe[$i] = preg_replace("/[^;]+\s*url\s*\([^\)]+\)[^;]*;?/i", "/*$0*/", $safe[$i]);
 				$attrStr .= " $i=\"".$safe[$i].'"';
 			} else
 				$safe[$i] = '';
