@@ -360,6 +360,17 @@ This inner toggle box is made via the <code>&lt;tag&gt;</code> syntax.
 |dropdown=true}}
 
 ===== Toggle boxes and dropdowns in tab boxes =====
+
+If you want to place a toggle box or a dropdown inside a tab navigation, and want the toggle box to show up for every tab as opposed to just the tab it's nested in, first a parent <code>&lt;tab&gt;</code> tab must be made, with <code>index="*"</code>, so that the toggle box won't be recognised as a seperate tab content.
+
+If you want to place a toggle box or dropdown menu inside a tab menu, you can simply place a <code>&lt;tab&gt;</code> tag inside the <code>&lt;tab&gt;</code> tag that functions as a tab. This will restrict toggle boxes and dropdowns to visibility in just one tab though. So, if you want to have a toggle box or dropdown that's visible in every tab, encase it in a <code>&lt;tab&gt;</code> tag with an <code>index="*"</code> set to it.
+
+That way, the outer <code>&lt;tab&gt;</code> tag will be recognised as a tab container, and the inner one will be recognised as a toggle box or dropdown menu, as desired. The toggle box or dropdown must then also use the [[#General usage information|parser function syntax]].
+
+If you want the contents of the toggle box inside the tab menu to be able to change depending on the selected tab, you should use the <code>nested="true"</code> attribute on the tag. This can be done by setting the very last argument of the <code>#tab:</code> parser function or the <code>#tag:tab</code> parser function to <code>nested=true</code>.
+
+See this demo for an example of how to make this work:
+
 <tabs>
 <tab name="Toggle box">
 This first tab has a toggle box nested inside it
@@ -368,6 +379,9 @@ This first tab has a toggle box nested inside it
 <tab name="Dropdown">
 This second tab has a dropdown nested inside it
 {{#tag:tab|This dropdown is created via the <code>#tag:tab</code> parser function, since it's not possible to define attributes such as <code>dropdown</code> via the <code>#tab:</code> parser function.|dropdown=true}}
+</tab>
+<tab index="*" block>
+{{#tag:tab|This toggle box shows up inside {{#tab:|every|each of the|nested=true}} tab{{#tag:tab|s|index=2|nested=true}}, because the containing tab tag has got its index attribute set to <code>index="*"</code>. It also has a <code>block</code> attribute.|openname=Open|closename=Close}}
 </tab>
 </tabs>
 

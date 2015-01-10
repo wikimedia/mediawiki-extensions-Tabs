@@ -60,14 +60,15 @@ class Tabs {
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS($parser) : ''; // init styles, set the return <form> tag as $form.
 		++$parser->tabsData['tabCount'];
 		$names = &$parser->tabsData['tabNames'];
+		$nestAttr = isset($attr['nested']); //adding this attribute will restrict functionality, but allow nested tabs inside toggleboxes
 		$nested = $parser->tabsData['nested'];
 		if (isset($attr['name'])) {
 			$attr['name'] = trim(htmlspecialchars($attr['name'])); // making the name attr safe to use
 		}
 		// Default value for the tab's given index: index attribute's value, or else the index of the tab with the same name as name attribute, or else the tab index
-		if (!$nested) {
+		if (!$nested && !$nestAttr) {
 			$index = -1; // indices do nothing for non-nested tabs, so don't even bother doing the computations.
-		} elseif (isset($attr['index']) && intval($attr['index']) <= count($names)) {
+		} elseif (isset($attr['index']) && (intval($attr['index']) <= count($names) || $nestAttr)) {
 			$index = intval($attr['index']); // if the index is given, and it isn't greater than the current index + 1.
 		} elseif (isset($attr['index']) && $attr['index'] == '*') {
 			$index = 0; //use wildcard index: this tab's contents shows up for every single tab;
@@ -79,7 +80,7 @@ class Tabs {
 		}
 		
 		$classPrefix = '';
-		if ($nested) {// Note: This is defined seperately for toggleboxes, because of the different classes required.
+		if ($nested || $nestAttr) {// Note: This is defined seperately for toggleboxes, because of the different classes required.
 			$classPrefix .= "tabs-content tabs-content-$index";
 		}
 		if (isset($attr['class'])) {
@@ -94,7 +95,7 @@ class Tabs {
 				$name = trim(isset($attr['name']) && $attr['name'] ? $attr['name'] : wfMessage('tabs-tab-label', $index));
 			}
 		}
-		if (!$nested) { // This runs when the tab is not nested inside a <tabs> tag.
+		if (!$nested && !$nestAttr) { // This runs when the tab is not nested inside a <tabs> tag.
 			$container = $this->renderBox($input, $attr, $parser);
 		} else { // this runs when the tab is nested inside a <tabs> tag.
 			if ($index !== 0 && array_search($name, $names) === false) {// append name if it's not already in the list.
@@ -120,7 +121,6 @@ class Tabs {
 			}
 		}
 		if ($input === null) return ''; // return empty string if the tag is self-closing. This can be used to pre-define tabs for referring to via the index later.
-
 		$parser->tabsData['nested'] = false; // temporary
 		$newstr = $parser->recursiveTagParse($input);
 		$parser->tabsData['nested'] = $nested; // revert
@@ -281,10 +281,17 @@ class Tabs {
 		$args = max(func_num_args(), count($index)+2);
 		$argcount = func_num_args();
 		$output = '';
-		// start with 1, since that'll be the default index="" for the first tab:
+		$nested = false;
+		// start with 1, since that'll be the default index="" for the first tab.
 		for ($i = 1; $i+1 < $args; $i++) {
-			// arg 0 will be $parser, arg 1 will be the list of names/indices. Start fetching arguments with arg 2. Empty string if this argument is not defined.
+			// $i+1 is used in this loop because the arguments are ($parser, $index, PARAM_1, PARAM_2, ...);
+			// so to get PARAM_n, you must do func_get_arg(n+1).
 			$val = $i+1 < $argcount ? func_get_arg($i+1) : '';
+			if (preg_match("/^nested=/", trim($val)) && $i+2 == $argcount) {
+				//if the last parameter has |nested=true then make all tabs nested
+				$nested = true;
+				continue; //there may still be self-closing tags to define based on name. So, continue the loop.
+			}
 			$index_i = isset($index[$i-1]) ? trim($index[$i-1]) : '';
 			if (preg_match('/^#\d+$/',$index_i) && intval(substr($index_i,1)) > 0) {
 				//only assign an index if the attribute is just digits, preceded by #
@@ -310,6 +317,10 @@ class Tabs {
 			} elseif ($isname) { // if no content is defined, but a name is defined. Makes it easier to define all tabs at the top.
 				$output .= "<tab $attr />";
 			} //otherwise, just don't append anything to the output.
+		}
+		if ($nested) {
+			//if the last parameter was |nested=true, then convert all tabs to nested tabs.
+			$output = preg_replace("/<tab /", '<tab nested ', $output);
 		}
 		return array( $output, 'noparse' => false );
 	}
