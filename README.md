@@ -44,6 +44,10 @@ But this will work:
 |style=color:{{#if:{{{1|}}}|green|red}} }}
 </pre>
 
+==== Hotlinking tabs ====
+
+It is possible to hotlink tabs the same way as hotlinking sections on pages. Simply put the tab label in the URL, and the page will automatically scroll to the top of the tab, and open the selected tab. This will always open only the very first tab that has the specified tab label (for example, if there are two tab boxes that both have a tab labelled "Tab 1", putting <code>#Tab_1</code> in the URL will scroll to the first one on the page). If there is already another element on the page that could be scrolled to, such as a page section, that other element will have priority, and the tab will not be focused.
+
 === Toggle box ===
 
 ==== Documentation ====
@@ -365,7 +369,7 @@ If you want to place a toggle box or a dropdown inside a tab navigation, and wan
 
 If you want to place a toggle box or dropdown menu inside a tab menu, you can simply place a <code>&lt;tab&gt;</code> tag inside the <code>&lt;tab&gt;</code> tag that functions as a tab. This will restrict toggle boxes and dropdowns to visibility in just one tab though. So, if you want to have a toggle box or dropdown that's visible in every tab, encase it in a <code>&lt;tab&gt;</code> tag with an <code>index="*"</code> set to it.
 
-That way, the outer <code>&lt;tab&gt;</code> tag will be recognised as a tab container, and the inner one will be recognised as a toggle box or dropdown menu, as desired. The toggle box or dropdown must then also use the [[#General usage information|parser function syntax]].
+That way, the outer <code>&lt;tab&gt;</code> tag will be recognised as a tab container, and the inner one will be recognised as a toggle box or dropdown menu, as desired. The toggle box or dropdown must then also use the [[#Nested combinations|parser function syntax]].
 
 If you want the contents of the toggle box inside the tab menu to be able to change depending on the selected tab, you should use the <code>nested="true"</code> attribute on the tag. This can be done by setting the very last argument of the <code>#tab:</code> parser function or the <code>#tag:tab</code> parser function to <code>nested=true</code>.
 

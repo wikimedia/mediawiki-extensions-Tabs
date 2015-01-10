@@ -16,7 +16,7 @@ jQuery(function($) {
 				return true; // continue the $.each() function
 			}
 			this.click(); // open the selected tab by default.
-			document.documentElement.scrollTop = this.offsetTop;
+			window.scrollTo(0, $(this).offset().top);
 			return false; // stop the $.each() function after the first match.
 		});
 	}
@@ -48,6 +48,7 @@ jQuery(function($) {
 	} else {
 		$(moveToHash);
 	}
+	addEventListener('hashchange', moveToHash);
 
 	/*
 	 * System to fix toggle boxes in Android Browser

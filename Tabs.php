@@ -30,7 +30,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'author'         => 'Joeytje50',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:Tabs',
 	'descriptionmsg' => 'tabs-desc',
-	'version'        => 1.3,
+	'version'        => '1.3.1',
 	'license-name'   => 'GPLv2+'
 );
 
