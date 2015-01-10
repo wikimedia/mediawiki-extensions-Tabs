@@ -66,42 +66,47 @@ class Tabs {
 		}
 		// Default value for the tab's given index: index attribute's value, or else the index of the tab with the same name as name attribute, or else the tab index
 		if (!$nested) {
-			$index = 0; // indices do nothing for non-nested tabs, so don't even bother doing the computations.
+			$index = -1; // indices do nothing for non-nested tabs, so don't even bother doing the computations.
 		} elseif (isset($attr['index']) && intval($attr['index']) <= count($names)) {
 			$index = intval($attr['index']); // if the index is given, and it isn't greater than the current index + 1.
-		} elseif (isset($attr['name']) && array_search($attr['name'], $names) !== false)
+		} elseif (isset($attr['index']) && $attr['index'] == '*') {
+			$index = 0; //use wildcard index: this tab's contents shows up for every single tab;
+			//this makes it possible to have a dropdown box inside a <tabs> box, which shows up for every tab.
+		} elseif (isset($attr['name']) && array_search($attr['name'], $names) !== false) {
 			$index = array_search($attr['name'], $names)+1; // if index is not defined, but the name is, use the index of the tabname.
-		else {
+		} else {
 			$index = count($names)+1; // index of this tab in this scope. Plus one because tabs are 1-based, arrays are 0-based.
 		}
 		
 		$classPrefix = '';
-		if ($nested) // Note: This is defined seperately for toggleboxes, because of the different classes required.
+		if ($nested) {// Note: This is defined seperately for toggleboxes, because of the different classes required.
 			$classPrefix .= "tabs-content tabs-content-$index";
-		
-		if (!isset($attr['class']))
-			$attr['class'] = $classPrefix; // only the prefix if no classes have been defined
-		else
-			$attr['class'] = trim("$classPrefix ".htmlspecialchars($attr['class']));
-		
-		if (isset($names[$index-1])) {// if array $names already has a name defined at position $index, use that.
-			$name = $names[$index-1]; // minus 1 because tabs are 1-based, arrays 0-based.
-		} else {// otherwise, use the entered name, or the $index with a "Tab " prefix if it is not defined or empty.
-			$name = trim(isset($attr['name']) && $attr['name'] ? $attr['name'] : wfMessage('tabs-tab-label', $index));
 		}
-
+		if (isset($attr['class'])) {
+			$attr['class'] = trim("$classPrefix ".htmlspecialchars($attr['class']));
+		} else {
+			$attr['class'] = $classPrefix; // only the prefix if no classes have been defined
+		}
+		if ($index !== 0) {
+			if (isset($names[$index-1])) { // if array $names already has a name defined at position $index, use that.
+				$name = $names[$index-1]; // minus 1 because tabs are 1-based, arrays 0-based.
+			} else { // otherwise, use the entered name, or the $index with a "Tab " prefix if it is not defined or empty.
+				$name = trim(isset($attr['name']) && $attr['name'] ? $attr['name'] : wfMessage('tabs-tab-label', $index));
+			}
+		}
 		if (!$nested) { // This runs when the tab is not nested inside a <tabs> tag.
 			$container = $this->renderBox($input, $attr, $parser);
 		} else { // this runs when the tab is nested inside a <tabs> tag.
-			if (array_search($name, $names) === false) // append name if it's not already in the list.
+			if ($index !== 0 && array_search($name, $names) === false) {// append name if it's not already in the list.
 				$names[] = $name;
-			
-			if (isset($attr['block']))
+			}
+			if (isset($attr['block'])) {
 				$ib = 'tabs-block ';
-			elseif (isset($attr['inline']))
+			} elseif (isset($attr['inline'])) {
 				$ib = 'tabs-inline ';
-			else
+			} else {
 				$ib = '';
+			}
 			$attr['class'] = $ib.$attr['class'];
 			$container = array(
 				'',
@@ -109,7 +114,10 @@ class Tabs {
 				'div',
 				$this->getSafeAttrs($attr)
 			);
-			$parser->tabsData['labels'][intval($index)] = $name; // Store the index and the name so this can be used within the <tabs> hook to create labels
+			if ($index !== 0) {
+				// Store the index and the name so this can be used within the <tabs> hook to create labels
+				$parser->tabsData['labels'][intval($index)] = $name;
+			}
 		}
 		if ($input === null) return ''; // return empty string if the tag is self-closing. This can be used to pre-define tabs for referring to via the index later.
 
@@ -265,7 +273,7 @@ class Tabs {
 	/**
 	 * Renders parser function for simpler inline tab syntax ({{#tab:}})
 	 * @param Parser $parser
-	 * @param string $index A comma-seperated list of tab names or indices. Integers will always be interpreted as indices.
+	 * @param string $index A comma-seperated list of tab names or indices. Integers prefixed with '#' will always be interpreted as indices.
 	 * @return string A converted list of <tab> tags, further to be processed by the parser.
 	 */
 	public function renderPf($parser, $index) {
@@ -280,7 +288,7 @@ class Tabs {
 			$index_i = isset($index[$i-1]) ? trim($index[$i-1]) : '';
 			if (preg_match('/^#\d+$/',$index_i) && intval(substr($index_i,1)) > 0) {
 				//only assign an index if the attribute is just digits, preceded by #
-				$attr = "index=\"$index_i\"";
+				$attr = 'index="'.substr($index_i,1).'"';
 				$isname = false;
 			} elseif ($index_i) {
 				// only assign a name if the name attribute isn't just whitespace

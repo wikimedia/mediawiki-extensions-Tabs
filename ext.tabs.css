@@ -22,11 +22,15 @@ body:not(oldbrowser) .tabs-content {display: none;}
 
 /**
  * This is for testing if the browser supports the :not() selector. !important is used to ensure this style doesn't change.
- * The "sans-serif" ("without-serif") and "serif" fonts are used to indicate "sans" :not()-support or with.
+ * The "sans-serif" ("without-serif") and "serif" fonts are used to indicate :not()-support (so also :checked support, since those
+ * selectors gained support in almost every browser at the very same moment). "sans-serif" indicates no support; "serif" indicates :not() support.
  * This form is used as a "testcase" because it is hidden from view anyway, and always present when any <tab> or <tabs> tags are present.
  * The margin: 0px is to determine whether the browser supports the general sibling selector ~. If it doesn't, there is "no margin" for interactivity, so JS is not activated.
  */
-#tabs-inputform {font-family: sans-serif !important;margin: 0px !important;}
+#tabs-inputform {
+	font-family: sans-serif !important;
+	margin: 0px !important;
+}
 head~body #tabs-inputform {margin: 1px !important;}
 body:not(oldbrowser) #tabs-inputform {font-family: serif !important;}
 
@@ -91,6 +95,15 @@ body.tabs-oldbrowserscript .tabs-content {display: none;}
 	display: inline-block;
 	vertical-align: bottom;
 }
+.tabs-tabbox .tabs-content-0 {
+	display: inline-block;
+}
+.tabs-tabbox .tabs-block.tabs-content-0 {
+	display: block;
+}
+.tabs-tabbox .tabs-inline.tabs-content-0 {
+	display: inline;
+}
 .tabs-plain > .tabs-label {
 	border: 1px solid #AAA;
 	border-radius: 8px;
@@ -105,6 +118,7 @@ body.tabs-oldbrowserscript .tabs-content {display: none;}
 
 .tabs-togglebox > .tabs-container {
 	display: inline-block; /* this is to make the box the minimal width it needs to be */
+	width: inherit;
 	padding: 0;
 	border-radius: 8px;
 }

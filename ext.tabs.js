@@ -1,9 +1,13 @@
 $(function() {
-	if ($('#tabs-inputform').css('font-family').replace(/["']/g,'') == 'sans-serif' && $('#tabs-inputform').css('margin') == '1px') {
 	// Credit for this testing method: 2astalavista @ http://stackoverflow.com/a/21095568/1256925
+	// The font will be sans-serif if the :not() property is supported. The margin will be 1px if the sibling selector is supported.
+	if ($('#tabs-inputform').css('font-family').replace(/["']/g,'') == 'sans-serif' && $('#tabs-inputform').css('margin') == '1px') {
 		$(function() {
 			$('body').addClass('tabs-oldbrowserscript'); // Make the unselected tabs hide when the browser loads this script
-			$('.tabs-label').click(function(e) { $('#'+$(this).attr('for')).click(); e.preventDefault(); return false; });
+			$('.tabs-label').click(function(e) {
+				$('#'+$(this).attr('for')).click(); e.preventDefault();
+				return false;
+			});
 			$('.tabs-input').each(function() {
 				if (this.checked) $(this).addClass('checked'); // Adds checked class to each checked box
 			}).change(function() {
@@ -15,9 +19,9 @@ $(function() {
 			});
 			moveToHash();
 		});
-	} else
+	} else {
 		$(moveToHash);
-
+	}
 	/**
 	 * Imitates the normal feature in browsers to scroll to an id that has the same id as the url fragment/hash.
 	 * This makes it unnecessary to use actual ids on the tabs, which could cause the same id to occur twice in the same document.
@@ -42,17 +46,17 @@ $(function() {
 	 * Idea for the use of <detail> and <summary> based on http://stackoverflow.com/q/21357641/1256925
 	 */
 	var nua = navigator.userAgent;
-	var is_android = ((nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1) && !(nua.indexOf('Chrome') > -1));
-	if (is_android) {
-		function replaces() { //General replacement function for both tags
-			var tagName = $(this).is('.tabs-container') ? 'details' : 'summary'; //determine the required tag name
-			var $newNode = $('<'+tagName+'/>').html($(this).html());
-			for (var i=0;i<this.attributes.length;i++) { //copy all attributes from the original element
-				if (this.attributes[i].nodeName === 'for') continue; //don't copy the label's for="" attribute, since it's not needed here.
-				$newNode.attr(this.attributes[i].nodeName, this.attributes[i].value);
-			}
-			return $newNode;
+	var is_android = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1);
+	function replaces() { //General replacement function for both tags
+		var tagName = $(this).is('.tabs-container') ? 'details' : 'summary'; //determine the required tag name
+		var $newNode = $('<'+tagName+'/>').html($(this).html());
+		for (var i=0;i<this.attributes.length;i++) { //copy all attributes from the original element
+			if (this.attributes[i].nodeName === 'for') continue; //don't copy the label's for="" attribute, since it's not needed here.
+			$newNode.attr(this.attributes[i].nodeName, this.attributes[i].value);
 		}
+		return $newNode;
+	}
+	if (is_android) {
 		$('.tabs-togglebox .tabs-container').not('.tabs-dropdown .tabs-container').replaceWith(replaces); //do not select dropdowns, which already work in Android
 		$('.tabs-togglebox .tabs-label').not('.tabs-dropdown .tabs-label').each(function() {
 			if ($(this).prevAll('input').prop('checked')) { //preserve open state of the toggle box
