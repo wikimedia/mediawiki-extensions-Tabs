@@ -217,29 +217,36 @@ Self-closing tabs can be used to define a list of tabs at the top of the tab men
 
 As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> parser function can also be used to simplify the syntax for tabs. The syntax for this parser function allows the following syntaxes:
 
-<pre>
-1. {{#tab:name1/#1, name2/#2, etc|content 1|content 2|etc}}
-2. {{#tab:|content 1|content 2|etc}}
-3. {{#tab:name1/#1, , name3/#3, name4/#4|content 1|content 2| |content 4}}
-4. {{#tab:name1, name2, name3...}}
-5. {{#tab:3, 5|content 3|content 5}}
-6. {{#tab:name1/#1, etc|content 1|$1}}
-</pre>
-These have the following effects:
-#Each of the defined names will be set as <code>name</code> or <code>index</code> attributes, respectively.
-#*All values that are prefixed with <code>#</code>, and are numbers only will be recognised as indices. For indices, surrounding whitespace is allowed, but internal whitespace or any non-number characters such as decimal points aren't.
-#*If these condtions are not met, the entered value is interpreted as a name.
-#*If the entered value contains only whitespace or is left empty, the index of that tab within the parser function is assumed.
-#No indices or names are defined here, so the indices of the tabs within the parser functions are automatically assigned as index.
-#The second tab will automatically get <code>index="2"</code>, and the third tab will have no content:
-#*If the third tab has a name defined in the list of names, then a [[#Self-closing tabs|self-closing tag]].
-#*If the third tab has an index defined, this tab is skipped, and no output is generated for this tab.
-#This will define three tabs, "name1", "name2" and "name3" using the [[#Self-closing tabs|self-closing syntax]].
-#This will add "content 3" to the rest of the contents of tab 3, and "content 5" to the rest of the content of tab 5.
-#When the content of a tab is <code>$n</code> (where <code>n</code> is the place of the tab in the parser function), the contents of that tab are copied over to the tab that has <code>$n</code> in it. For this to work, the following conditions must be met:
-#*The tab must contain nothing other than a dollar sign and a number directly after it. Surrounding whitespace is allowed.
-#*The parser function's <code>n</code>th parameter must be defined. <code>n</code> may also be bigger than the current tab index (so, <code><nowiki>{{#tab:3,5|$2|Hi}}</nowiki></code> would put "Hi" in both tab 3 and 5).
-#*The parser function's <code>n</code>th parameter must contain something other than just whitespace. Recursive references won't work, so <code><nowiki>{{#tab:|Hi|$1|$2}}</nowiki></code> will put "Hi" in tabs 1 and 2, and the literal text "$1" in tab 3.
+{|class="wikitable"
+!style="width: 50%"|Code
+!style="width: 50%"|Description
+|-
+|<code style="color: green;"><nowiki>{{#tab:name1/#1, name2/#2, etc|content 1|content 2|etc}}</nowiki></code>
+|Each of the defined names will be set as <code>name</code> or <code>index</code> attributes, respectively.
+*All values that are prefixed with <code>#</code>, and are numbers only will be recognised as indices. For indices, surrounding whitespace is allowed, but internal whitespace or any non-number characters such as decimal points aren't.
+*If these condtions are not met, the entered value is interpreted as a name.
+*If the entered value contains only whitespace or is left empty, the index of that tab is automatically calculated.
+|-
+|<code style="color: green;"><nowiki>{{#tab:|content 1|content 2|etc}}</nowiki></code>
+|No indices or names are defined here, so the indices of the tabs within the parser functions are automatically assigned as index.
+|-
+|<code style="color: green;"><nowiki>{{#tab:name1/#1, , name3/#3, name4/#4|content 1|content 2| |content 4}}</nowiki></code>
+|The second tab will automatically get <code>index="2"</code>, and the third tab will have no content:
+*If the third tab has a name defined in the list of names, then it becomes a [[#Self-closing tabs|self-closing tag]].
+*If the third tab has an index defined, this tab is skipped, and no output is generated for this tab.
+|-
+|<code style="color: green;"><nowiki>{{#tab:name1, name2, name3...}}</nowiki></code>
+|This will define three tabs, "name1", "name2" and "name3" using the [[#Self-closing tabs|self-closing syntax]].
+|-
+|<code style="color: green;"><nowiki>{{#tab:#3, #5|content 3|content 5}}</nowiki></code>
+|This will add "content 3" to the rest of the contents of tab 3, and "content 5" to the rest of the content of tab 5.
+|-
+|<code style="color: green;"><nowiki>{{#tab:name1/#1, etc|content 1|$1}}</nowiki></code>
+|When the content of a tab is <code>$n</code> (where <code>n</code> is the place of the tab in the parser function), the contents of that tab are copied over to the tab that has <code>$n</code> in it. For this to work, the following conditions must be met:
+*The tab must contain nothing other than a dollar sign and a number directly after it. Surrounding whitespace is allowed.
+*The parser function's <code>n</code>th parameter must be defined. <code>n</code> may also be bigger than the current tab index (so, <code><nowiki>{{#tab:#3,#5|$2|Hi}}</nowiki></code> would put "Hi" in both tab 3 and 5).
+*The parser function's <code>n</code>th parameter must contain something other than just whitespace. Recursive references won't work, so <code><nowiki>{{#tab:|Hi|$1|$2}}</nowiki></code> will put "Hi" in tabs 1 and 2, and the literal text "$1" in tab 3.
+|}
 
 ==== Demos ====
 
