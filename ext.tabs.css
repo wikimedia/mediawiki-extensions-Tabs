@@ -18,33 +18,40 @@
  * Sources: https://developer.mozilla.org/en-US/docs/Web/CSS/:checked#Browser_compatibility,
  *          https://developer.mozilla.org/en-US/docs/Web/CSS/:not#Browser_compatibility
  */
-body:not(oldbrowser) .tabs-content {display:none;}
+body:not(oldbrowser) .tabs-content {display: none;}
 
 /**
  * This is for testing if the browser supports the :not() selector. !important is used to ensure this style doesn't change.
  * The "sans-serif" ("without-serif") and "serif" fonts are used to indicate "sans" :not()-support or with.
  * This form is used as a "testcase" because it is hidden from view anyway, and always present when any <tab> or <tabs> tags are present.
- * The margin:0px is to determine whether the browser supports the general sibling selector ~. If it doesn't, there is "no margin" for interactivity, so JS is not activated.
+ * The margin: 0px is to determine whether the browser supports the general sibling selector ~. If it doesn't, there is "no margin" for interactivity, so JS is not activated.
  */
-#tabs-inputform {font-family:sans-serif !important;margin:0px !important;}
-head~body #tabs-inputform {margin:1px !important;}
-body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
+#tabs-inputform {font-family: sans-serif !important;margin: 0px !important;}
+head~body #tabs-inputform {margin: 1px !important;}
+body:not(oldbrowser) #tabs-inputform {font-family: serif !important;}
 
 /**
  * max-height prevents font-boosting on tabs in mobile browsers even when not in mobile skin.
  * Font-boosting causes weird differences between tab contents and surrounding text (most specifically for inline tabs), so disabling it altogether.
  * If font-boosting doesn't create difference in size between text and inline tab contents anymore, remove or comment out the next line.
  */
-.tabs, .tabs * {max-height:1000000px;}
-.tabs-input, .tabs-close, #tabs-inputform, body.tabs-oldbrowserscript .tabs-content {display:none;}
-.tabs-tabbox, .tabs-togglebox {margin:10px 0;}
-.tabs-label {
-	cursor:pointer;
-	padding:1px 6px;
-	background-color:#DDD;
-	border:1px solid #AAA;
+.tabs, .tabs * {
+	max-height: 1000000px;
 }
-.tabs-togglebox.tabs-inline {display:inline-block;}
+.tabs-input,
+.tabs-close,
+#tabs-inputform,
+body.tabs-oldbrowserscript .tabs-content {display: none;}
+.tabs-tabbox, .tabs-togglebox {
+	margin: 10px 0;
+}
+.tabs-label {
+	cursor: pointer;
+	padding: 1px 6px;
+	background-color: #DDD;
+	border: 1px solid #AAA;
+}
+.tabs-togglebox.tabs-inline {display: inline-block;}
 
 /**
  * Regarding the * html and *+html selectors
@@ -57,90 +64,96 @@ body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
  *          http://www.webdevout.net/css-hacks#in_css-selectors
  *          https://en.wikipedia.org/wiki/CSS_hack#Star_plus_hack
  */
-* html .tabs-togglebox .tabs-inline {display:inline;}/*IE6 and below*/
-*+html .tabs-togglebox .tabs-inline {display:inline;}/*IE7 only*/
+* html .tabs-togglebox .tabs-inline {display: inline;}/*IE6 and below*/
+*+html .tabs-togglebox .tabs-inline {display: inline;}/*IE7 only*/
 
 /**
  * The following is an alternative to the non-IE<9 `:first-of-type` and selects the first tabs-label,
  * since only the first label is positioned behind 2 inputs in a row.
  */
-.tabs-tabbox > .tabs-input+ .tabs-input+ .tabs-label {margin-left:10px;}
+.tabs-tabbox > .tabs-input+ .tabs-input+ .tabs-label {
+	margin-left: 10px;
+}
 .tabs-tabbox > .tabs-container {
-	margin-top:-1px;
-	padding:2px 6px;
-	border-radius:8px;
-	position:relative;
-	border:1px solid #AAA;
-	width:inherit; /*This will cause the width to be inherited from the main tab, and enables the possibility to use width:inherit within the tab itself too */
-	z-index:1; /* unselected tab is positioned below the content this way */
+	margin-top: -1px;
+	padding: 2px 6px;
+	border-radius: 8px;
+	position: relative;
+	border: 1px solid #AAA;
+	width: inherit; /*This will cause the width to be inherited from the main tab, and enables the possibility to use width: inherit within the tab itself too */
+	z-index: 1; /* unselected tab is positioned below the content this way */
 }
 .tabs-tabbox > .tabs-label {
-	margin:0 2px;
-	border-bottom:none;
-	border-radius:7px 7px 0 0;
-	position:relative;
-	display:inline-block;
-	vertical-align:bottom;
+	margin: 0 2px;
+	border-bottom: none;
+	border-radius: 7px 7px 0 0;
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
 }
 .tabs-plain > .tabs-label {
-	border:1px solid #AAA;
-	border-radius:8px;
-	margin:2px;
+	border: 1px solid #AAA;
+	border-radius: 8px;
+	margin: 2px;
 }
 .tabs-plain > .tabs-container {
-	border-radius:0;
-	border:none;
-	padding:0;
-	margin-top:1px;
+	border-radius: 0;
+	border: none;
+	padding: 0;
+	margin-top: 1px;
 }
 
 .tabs-togglebox > .tabs-container {
-	display:inline-block; /* this is to make the box the minimal width it needs to be */
-	padding:0;
-	border-radius:8px;
+	display: inline-block; /* this is to make the box the minimal width it needs to be */
+	padding: 0;
+	border-radius: 8px;
 }
 .tabs-togglebox >*> .tabs-label {
-	display:block;
-	text-align:center;
-	border-radius:7px;
-	padding:1px 5px;
-	margin:0;
-	outline:none; /* prevent :focus outline */
+	display: block;
+	text-align: center;
+	border-radius: 7px;
+	padding: 1px 5px;
+	margin: 0;
+	outline: none; /* prevent :focus outline */
 }
 .tabs-togglebox >*> .tabs-content {
-	padding:2px 6px;
-	border-radius:0 0 7px 7px;
-	border:1px solid #AAA;
-	border-top:none;
-	vertical-align:top;
+	padding: 2px 6px;
+	border-radius: 0 0 7px 7px;
+	border: 1px solid #AAA;
+	border-top: none;
+	vertical-align: top;
 }
 
 .tabs-dropdown .tabs-container {
-	width:inherit;
-	position:relative;
+	width: inherit;
+	position: relative;
 }
-.tabs-dropdown >*> .tabs-content {border-radius:0;}
-.tabs-dropdown p {margin:0;}
-.tabs-dropdown >*> .tabs-label {
-	margin-right:-14px; /* This is to align the label with the tabs content correctly: it becomes 2*7px (padding + border-width on tabs-content) wider. */
-}
-.tabs-dropdown {margin-right:14px;} /*Cancel out the -14px margin to prevent clipping problems*/
 .tabs-dropdown >*> .tabs-content {
-	position:absolute;
-	z-index:100000;
-	cursor:default;
-	margin:0;
-	padding:0 6px;
-	display:block; /* tabs-content is display:block by default, but is hidden by moving it off the screen to allow delaying the showing of the contents, via CSS transitions */
-	left:-1000000px; /*move the menu off the screen. As opposed to display:none, this does allow transition-delay.*/
+	border-radius: 0;
+}
+.tabs-dropdown p {margin: 0;}
+.tabs-dropdown >*> .tabs-label {
+	margin-right: -14px; /* This is to align the label with the tabs content correctly: it becomes 2*7px (padding + border-width on tabs-content) wider. */
+}
+.tabs-dropdown {
+	margin-right: 14px; /*Cancel out the -14px margin to prevent clipping problems*/
+}
+.tabs-dropdown >*> .tabs-content {
+	position: absolute;
+	z-index: 100000;
+	cursor: default;
+	margin: 0;
+	padding: 0 6px;
+	display: block; /* tabs-content is display: block by default, but is hidden by moving it off the screen to allow delaying the showing of the contents, via CSS transitions */
+	left: -1000000px; /*move the menu off the screen. As opposed to display: none, this does allow transition-delay.*/
 }
 .tabs-dropdown >*> .tabs-content,
 .tabs-dropdown li ul,
 .tabs-dropdown li ol {
-	width:inherit;
-	box-shadow:2px 3px 5px #888;
+	width: inherit;
+	box-shadow: 2px 3px 5px #888;
 }
-.tabs-dropdown li {width:inherit;}
+.tabs-dropdown li {width: inherit;}
 
 .tabs-dropdown >*> .tabs-label,
 .tabs-dropdown >*> .tabs-content,
@@ -154,128 +167,128 @@ body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
 }
 
 .tabs-dropdown .tabs-dropdown {
-	margin-left:-7px; /* prevent overflowing for nested dropdowns. */
+	margin-left: -7px; /* prevent overflowing for nested dropdowns. */
 }
 .tabs-dropdown li li .tabs-dropdown {
-	margin-left:0; /* this negative margin is not necessary in sub-menus */
+	margin-left: 0; /* this negative margin is not necessary in sub-menus */
 }
 
 .tabs-dropdown li,
 .tabs-dropdown >*> .tabs-content> a,
 .tabs-dropdown >*> .tabs-content>p> a,
 .tabs-dropdown ol>li> a {
-	display:list-item;
-	list-style:none;
-	margin:-1px -6px 0 -6px; /*These margins and padding styles cause the <li> to take up the full width of the dropdown: -6px cancels out the original padding.*/
-	padding:2px 6px;
-	border-top:1px solid #AAA;
-	position:relative;
+	display: list-item;
+	list-style: none;
+	margin: -1px -6px 0 -6px; /*These margins and padding styles cause the <li> to take up the full width of the dropdown: -6px cancels out the original padding.*/
+	padding: 2px 6px;
+	border-top: 1px solid #AAA;
+	position: relative;
 }
 
 .tabs-dropdown ol>li> a {
-	border:none;
-	margin:-2px -6px;
-	padding:2px 6px;
+	border: none;
+	margin: -2px -6px;
+	padding: 2px 6px;
 }
 .tabs-dropdown li li a {
-	margin:-2px 0;
+	margin: -2px 0;
 }
 .tabs-dropdown li li,
 .tabs-dropdown li li:last-child {
-	margin-left:0; /* cancel out negative margins for the nested <li>s */
-	margin-right:0;
-	padding:2px 0;
+	margin-left: 0; /* cancel out negative margins for the nested <li>s */
+	margin-right: 0;
+	padding: 2px 0;
 }
 .tabs-dropdown >*> .tabs-content ul,
 .tabs-dropdown >*> .tabs-content ol {
-	margin:0; /*remove initial margins*/
-	width:inherit;
+	margin: 0; /*remove initial margins*/
+	width: inherit;
 }
 .tabs-dropdown li ul,
 .tabs-dropdown li ol {
-	position:absolute;
-	border:1px solid #AAA;
-	top:-1px;
-	left:-1000012px;
+	position: absolute;
+	border: 1px solid #AAA;
+	top: -1px;
+	left: -1000012px;
 }
 .tabs-dropdown li ul ~ ul, .tabs-dropdown li ul ~ ol,
 .tabs-dropdown li ol ~ ul, .tabs-dropdown li ol ~ ol {
-	display:none; /*This prevents multiple different types of lists from overlapping within sub-menus. Sub-menus should always use the same type of list for all items.*/
+	display: none; /*This prevents multiple different types of lists from overlapping within sub-menus. Sub-menus should always use the same type of list for all items.*/
 }
 .tabs-dropdown li ul:before,
 .tabs-dropdown li ol:before {
 	content: ">";
-	color:#88F;
-	font-weight:bold;
-	position:absolute;
-	left:100%;
-	margin-left:1000012px;
+	color: #88F;
+	font-weight: bold;
+	position: absolute;
+	left: 100%;
+	margin-left: 1000012px;
 }
 .tabs-dropdown li li ul:before,
 .tabs-dropdown li li ol:before {
-	margin-left:1000000px;
+	margin-left: 1000000px;
 }
 
 /* Interactivity styles */
 
 .tabs-label:hover {
-	background-color:#CCC;
+	background-color: #CCC;
 }
 .tabs-label:active, .tabs-label:focus {
-	background-color:#CCE;
+	background-color: #CCE;
 }
 .tabs-tabbox > .tabs-input:checked + .tabs-label,
 .tabs-input-0:checked + .tabs-input-1 + .tabs-label {
-	z-index:2;
-	background-color:#FFF;
+	z-index: 2;
+	background-color: #FFF;
 }
 .tabs-togglebox >*> .tabs-input:checked + .tabs-label,
-.tabs-dropdown >*> .tabs-label:focus, .tabs-dropdown:hover >*> .tabs-label {border-radius:7px 7px 0 0;}
+.tabs-dropdown >*> .tabs-label:focus, .tabs-dropdown:hover >*> .tabs-label {border-radius: 7px 7px 0 0;}
 
-.tabs-togglebox >*> .tabs-input:checked ~ .tabs-content {display:block;}
+.tabs-togglebox >*> .tabs-input:checked ~ .tabs-content {display: block;}
 /* tabs-close is hidden by default, tabs-open is shown by default. Swap this when the tab is opened. */
-.tabs-togglebox .tabs-input:checked + * .tabs-close {display:inline;}
-.tabs-togglebox .tabs-input:checked + * .tabs-open {display:none;}
+.tabs-togglebox .tabs-input:checked + * .tabs-close {display: inline;}
+.tabs-togglebox .tabs-input:checked + * .tabs-open {display: none;}
 
 
 .tabs-dropdown >*> .tabs-content li:hover {
-	background:#CCC;
+	background: #CCC;
 }
 .tabs-dropdown a,
 .tabs-dropdown a:hover,
-.tabs-dropdown a:visited {
-	color:#15B;
+.tabs-dropdown a: visited {
+	color: #15B;
 }
 .tabs-dropdown a:active {
-	color:#108;
+	color: #108;
 }
 .tabs-dropdown >*> .tabs-content> a:hover,
 .tabs-dropdown >*> .tabs-content>p> a:hover,
 .tabs-dropdown ol>li> a:hover {
-	background:#CCE;
-	text-decoration:none;
+	background: #CCE;
+	text-decoration: none;
 }
 
-.tabs-dropdown >*> .tabs-label:focus + .tabs-content, .tabs-dropdown:hover >*> .tabs-content {left:0;}
+.tabs-dropdown >*> .tabs-label:focus + .tabs-content, .tabs-dropdown:hover >*> .tabs-content {left: 0;}
 .tabs-dropdown >*> .tabs-content li:hover > ul,
 .tabs-dropdown >*> .tabs-content li:hover > ol {
-	left:100%;
+	left: 100%;
 }
 .tabs-dropdown >*> .tabs-content li:hover > ul:before,
 .tabs-dropdown >*> .tabs-content li:hover > ol:before {
-	margin-left:0;
-	left:-12px;
+	margin-left: 0;
+	left: -12px;
 }
 
 /***** The same :checked interactivity styles, but for non-:checked browsers with JS *****/
 .tabs-tabbox > .tabs-input.checked + .tabs-label,
 .tabs-input-0.checked + .tabs-input-1 + .tabs-label {
-	z-index:2;
-	background-color:#FFF;
+	z-index: 2;
+	background-color: #FFF;
 }
-.tabs-togglebox >*> .tabs-input.checked ~ .tabs-content {display:block;}
-.tabs-togglebox >*> .tabs-input.checked + * .tabs-close {display:inline;}
-.tabs-togglebox >*> .tabs-input.checked + * .tabs-open {display:none;}
+.tabs-togglebox >*> .tabs-input.checked ~ .tabs-content {display: block;}
+.tabs-togglebox >*> .tabs-input.checked + * .tabs-close {display: inline;}
+.tabs-togglebox >*> .tabs-input.checked + * .tabs-open {display: none;}
 
 /**
  * The following is an alternative toggle system for Android Browser using <detail> and <summary> tags
@@ -283,13 +296,13 @@ body:not(oldbrowser) #tabs-inputform {font-family:serif !important;}
  */
 
 summary::-webkit-details-marker {
-	display:none;
+	display: none;
 }
 .tabs-togglebox details.tabs-container:not([open]) .tabs-content {
-	display:none;
+	display: none;
 }
 .tabs-togglebox details.tabs-container[open] .tabs-content {
-	display:block;
+	display: block;
 }
 
 .tabs-togglebox details.tabs-container:not([open]) .tabs-label {
@@ -299,5 +312,5 @@ summary::-webkit-details-marker {
 	border-radius: 7px 7px 0 0;
 }
 
-.tabs-togglebox details.tabs-container[open] .tabs-close {display:inline;}
-.tabs-togglebox details.tabs-container[open] .tabs-open {display:none;}
+.tabs-togglebox details.tabs-container[open] .tabs-close {display: inline;}
+.tabs-togglebox details.tabs-container[open] .tabs-open {display: none;}

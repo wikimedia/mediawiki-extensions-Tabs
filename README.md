@@ -218,23 +218,28 @@ Self-closing tabs can be used to define a list of tabs at the top of the tab men
 As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> parser function can also be used to simplify the syntax for tabs. The syntax for this parser function allows the following syntaxes:
 
 <pre>
-{{#tab:name/index 1, name/index 2, etc|content 1|content 2|etc}}
-{{#tab:|content 1|content 2|etc}}
-{{#tab:name/index 1, , name/index 3, name/index 4|content 1|content 2| |content 4}}
-{{#tab:name 1, name 2, name 3...}}
-{{#tab:name/index 1, etc|content 1|$1}}
+1. {{#tab:name1/#1, name2/#2, etc|content 1|content 2|etc}}
+2. {{#tab:|content 1|content 2|etc}}
+3. {{#tab:name1/#1, , name3/#3, name4/#4|content 1|content 2| |content 4}}
+4. {{#tab:name1, name2, name3...}}
+5. {{#tab:3, 5|content 3|content 5}}
+6. {{#tab:name1/#1, etc|content 1|$1}}
 </pre>
 These have the following effects:
 #Each of the defined names will be set as <code>name</code> or <code>index</code> attributes, respectively.
-#*All values that are numbers only will be automatically recognised as indices. For indices, surrounding whitespace is allowed, but internal whitespace or any non-number characters such as decimal points aren't.
+#*All values that are prefixed with <code>#</code>, and are numbers only will be recognised as indices. For indices, surrounding whitespace is allowed, but internal whitespace or any non-number characters such as decimal points aren't.
 #*If these condtions are not met, the entered value is interpreted as a name.
 #*If the entered value contains only whitespace or is left empty, the index of that tab within the parser function is assumed.
 #No indices or names are defined here, so the indices of the tabs within the parser functions are automatically assigned as index.
-#The second tab will automatcally get <code>index="1"</code>, and the third tab will have no content:
+#The second tab will automatically get <code>index="2"</code>, and the third tab will have no content:
 #*If the third tab has a name defined in the list of names, then a [[#Self-closing tabs|self-closing tag]].
 #*If the third tab has an index defined, this tab is skipped, and no output is generated for this tab.
-#This will define three tabs, "name 1", "name 2" and "name 3" using the [[#Self-closing tabs|self-closing syntax]].
-#When the content of a tab is <code>$n</code> (where <code>n</code> is the place of the tab in the parser function), the contents of that tab are copied over to the tab that has <code>$n</code> in it. This only works if the tab contains nothing other than <code>$n</code>, and the parser function's <code>n</code>th parameter is defined and not empty.
+#This will define three tabs, "name1", "name2" and "name3" using the [[#Self-closing tabs|self-closing syntax]].
+#This will add "content 3" to the rest of the contents of tab 3, and "content 5" to the rest of the content of tab 5.
+#When the content of a tab is <code>$n</code> (where <code>n</code> is the place of the tab in the parser function), the contents of that tab are copied over to the tab that has <code>$n</code> in it. For this to work, the following conditions must be met:
+#*The tab must contain nothing other than a dollar sign and a number directly after it. Surrounding whitespace is allowed.
+#*The parser function's <code>n</code>th parameter must be defined. <code>n</code> may also be bigger than the current tab index (so, <code><nowiki>{{#tab:3,5|$2|Hi}}</nowiki></code> would put "Hi" in both tab 3 and 5).
+#*The parser function's <code>n</code>th parameter must contain something other than just whitespace. Recursive references won't work, so <code><nowiki>{{#tab:|Hi|$1|$2}}</nowiki></code> will put "Hi" in tabs 1 and 2, and the literal text "$1" in tab 3.
 
 ==== Demos ====
 
@@ -280,7 +285,7 @@ This line of text contains <tab name="Exaggerating">over 9000</tab><tab name="Tr
 The switching <tab index="1">epicness</tab><tab index="2">parts</tab> are made by putting <code>&lt;tab&gt;</code> tags within the flow of the text.
 </tabs>
 ----
-This tab menu looks exactly the same, but uses the parser function <code><nowiki>{{#tab:name1, name2|content1|content2}}</nowiki></code> or <code><nowiki>{{#tab:index1, index2|content1|content2}}</nowiki></code>. This makes the code a bit shorter.
+This tab menu looks exactly the same, but uses the parser function <code><nowiki>{{#tab:name1, name2|content1|content2}}</nowiki></code> or <code><nowiki>{{#tab: #1, #2|content1|content2}}</nowiki></code>. This makes the code a bit shorter.
 
 <tabs>
 This line of text contains {{#tab:Exagerrating,Truth|over 9000|a couple of}} switching parts. The {{#tab:|very biggest|main}} part of this tab's contents is placed outside any {{#tab:|awesome}} <code>&lt;tab&gt;</code> tags.
@@ -371,7 +376,7 @@ This dropdown has a nested toggle box that has <code>inline</code> and <code>col
 *It is even possible to have a dropdown inside a list item in another dropdown box
 *{{#tag:tab|This a dropdown inside a list in the outer dropdown menu|dropdown=true}}
 *And it is even possible to have a dropdown inside sub-menus in the dropdown...
-**{{#tag:tab|It also works normally in sub-menus|dropdown=true}}
+**{{#tag:tab|It also works normally in sub-menus, although <code>style="width:186px;"</code> would be recommended. Although making the encasing <code>&lt;tab&gt;</code> wider using <code>style="width:214px;"</code> would work just as well.|dropdown=true|style=width:186px;}}
 Or if you want, you can place it outside lists too.
 {{#tag:tab|Here's a dropdown inside a dropdown, but not in any list|dropdown=true}}
 </tab>
