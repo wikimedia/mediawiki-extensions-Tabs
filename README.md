@@ -6,10 +6,10 @@ to view these demos.
 
 {{TOC|limit=4}}
 
-== Installation ==
+= Installation =
 {{ExtensionInstall|Tabs}}
 
-== Configuration ==
+= Configuration =
 
 This extension has no configuration options in <code>LocalSettings.php</code>, but it does have the ''MediaWiki:tabs-dropdown-bgcolor'' message associated with it, which is not meant to be translated. This message contains the default value for the <code>background-color</code> style for dropdown menus. This needs to be a [https://developer.mozilla.org/en-US/docs/Web/CSS/color_value valid <code>background-color</code> value].
 
@@ -20,9 +20,9 @@ It also has the following internationalisation messages associated with it:
 *''MediaWiki:tabs-toggle-close'' - The default closing label for toggle boxes.
 *''MediaWiki:tabs-dropdown-label'' - The default label for a dropdown menu.
 
-== Usage ==
+= Usage =
 
-=== General usage information ===
+== General usage information ==
 
 '''Note:''' - This extension uses the <code>bgcolor</code> attribute for dropdown menus. This is in no way meant as encouragement for the use of this deprecated attribute anywhere other than this tag.
 
@@ -44,16 +44,16 @@ But this will work:
 |style=color:{{#if:{{{1|}}}|green|red}} }}
 </pre>
 
-==== Hotlinking tabs ====
+=== Hotlinking tabs ===
 
 It is possible to hotlink tabs the same way as hotlinking sections on pages. Simply put the tab label in the URL, and the page will automatically scroll to the top of the tab, and open the selected tab. This will always open only the very first tab that has the specified tab label (for example, if there are two tab boxes that both have a tab labelled "Tab 1", putting <code>#Tab_1</code> in the URL will scroll to the first one on the page). If there is already another element on the page that could be scrolled to, such as a page section, that other element will have priority, and the tab will not be focused.
 
-=== Toggle box ===
+== Toggle box ==
 
-==== Documentation ====
+=== Documentation ===
 You can create a simple collapsible box by enclosing some content between <code><nowiki><tab> ... </tab></nowiki></code>. All content within the tags will be displayed within the toggle box.
 
-===== Available attributes: =====
+==== Available attributes: ====
 *<code>collapsed</code> - If this attribute is set, the toggle box will appear collapsed when the page loads. Otherwise it will be opened.
 *<code>inline</code> - If this attribute is set, the toggle box can be placed within text without interrupting the flow of the text.
 *<code>dropdown</code> - See [[#Dropdown menus]].
@@ -69,12 +69,26 @@ You can create a simple collapsible box by enclosing some content between <code>
 **[https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#class <code>class</code>] - Adds classes to the box.
 **[https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#id <code>id</code>] - Adds an id to the box. This id must be unique on the page, as with any id.
 
-==== Toggle box demos ====
+=== Toggle box demos ===
 
-===== Plain toggle box =====
+==== Plain toggle box ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab&gt;This toggle box has no attributes assigned to it.&lt;/tab&gt;
+</pre></tab>
 <tab>This toggle box has no attributes assigned to it.</tab>
 
-===== Toggle box attributes =====
+==== Toggle box attributes ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab collapsed openname="Toggle" style="font-weight:bold;width:500px;" container="font-style:italic;" title="Example tooltip"&gt;
+This toggle box has the following attributes defined:
+*<code>collapsed</code> - By default, it is closed.
+*<code>openname="Toggle"</code> - The label will show "Toggle" when it can be clicked to open the box. Since no <code>closename</code> attribute is defined, it defaults to "Toggle" too.
+*<code>style="font-weight:bold;width:500px;"</code> - The whole toggle box will be bold, and have a width of 500px.
+*<code>container="font-style:italic;"</code> - Only the contents of the toggle box will be italic.
+*<code>title="Example tooltip"</code> - The tooltip that shows when hovering over this tab is defined via the <code>title</code> attribute.
+&lt;/tab&gt;
+</pre></tab>
+
 <tab collapsed openname="Toggle" style="font-weight:bold;width:500px;" container="font-style:italic;" title="Example tooltip">
 This toggle box has the following attributes defined:
 *<code>collapsed</code> - By default, it is closed.
@@ -84,11 +98,15 @@ This toggle box has the following attributes defined:
 *<code>title="Example tooltip"</code> - The tooltip that shows when hovering over this tab is defined via the <code>title</code> attribute.
 </tab>
 
-===== Inline toggle boxes =====
+==== Inline toggle boxes ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab inline collapsed openname="Show" closename="Hide"&gt;
+</pre></tab>
+
 Here is an example of an inline toggle box. <tab inline collapsed openname="Show" closename="Hide">This togglebox is <code>inline</code> and <code>collapsed</code></tab> This toggle box has the attributes <code>openname="Show"</code> and <code>closename="Hide"</code> to change the default label text.
 
-=== Dropdown menus ===
-==== Documentation ====
+== Dropdown menus ==
+=== Documentation ===
 
 Dropdown menus are made by simply defining the <code>dropdown</code> attribute on a toggle box. They can be opened by either hovering over the label, or by clicking on the label to keep it opened even after moving away the cursor. Dropdown menus have an opening delay of 0.2 seconds built in to prevent accidental opening when hovering over the label, and to prevent accidental closing when accidentally moving the cursor off the dropdown. This delay is enough to prevent accidents like those, but is not enough to be bothersome.
 
@@ -114,31 +132,57 @@ But this is:
 #*#Sub-sub-menu item 1
 </pre>
 
-===== Available attributes: =====
+==== Available attributes: ====
 
 *All attributes that are available for toggle boxes
 *<code>dropdown</code> - Must be defined for the toggle box to become a dropdown menu.
 *<code>openname</code> and <code>closename</code> - These attributes are identical to the <code>name</code> attribute in dropdown menus. It is not possible to let the dropdown switch between 2 values. If the <code>openname</code> attribute is set, that value will be used as label, otherwise the <code>closename</code> value is used, and if neither of those values is set, the <code>name</code> value is used.
 *<code>bgcolor</code> - Because of how the background-color styling for dropdown works (background styles are applied to all items within dropdowns, otherwise they would become transparent), background colors need to be defined seperately. This must be done in the <code>bgcolor</code> attribute. This attribute works exactly the same as the <code>background-color</code> style in CSS. This defaults to the value defined in ''MediaWiki:tabs-dropdown-bgcolor''.
 
-==== Dropdown demos ====
+=== Dropdown demos ===
 
-===== Dropdown without lists =====
+==== Dropdown without lists ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown style="width:300pt" openname="Click/hover to show" closename="Showing..."&gt;
+This dropdown contains no lists, so it will not have any of the styling designed for dropdowns. It does work as it normally would though.
+
+This dropdown also has its <code>style</code> attribute set to <code>style="width:300pt"</code>. It also has different <code>openname</code> and <code>closename</code> attributes, so it defaults to the <code>openname</code> value.
+&lt;/tab&gt;
+</pre></tab>
+
 <tab dropdown style="width:300pt" openname="Click/hover to show" closename="Showing...">
 This dropdown contains no lists, so it will not have any of the styling designed for dropdowns. It does work as it normally would though.
 
 This dropdown also has its <code>style</code> attribute set to <code>style="width:300pt"</code>. It also has different <code>openname</code> and <code>closename</code> attributes, so it defaults to the <code>openname</code> value.
 </tab>
 
-===== Background-color for dropdowns =====
+==== Background-color for dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown bgcolor="salmon}body{font-weight:bold;"&gt;
+This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>.
+Just defining a <code>background-color</code> style would not work.
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown bgcolor="salmon}body{font-weight:bold;">
 This tab has a its <code>bgcolor</code> attribute set to <code>bgcolor="salmon"</code>.
 Just defining a <code>background-color</code> style would not work.
 </tab>
 
-===== Lists and links =====
+==== Lists and links ====
 Here you can see the difference between unordered and ordered lists within dropdowns. The appearance of both does not change, but the behaviour of links within them does.
+
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown&gt;
+#The first 2 items use ordered lists, which will show links as list items too.
+#[[#Dropdown demos|Example link]]
+*From here on this dropdown uses ordered lists, so links are shown within text.
+*See this [[#Dropdown demos|example link]].
+*Any links in dropdown menus placed outside lists will also be rendered as list items, like the following link:
+[[#Dropdown demos|Example link]]
+&lt;/tab&gt;
+</pre></tab>
+
 <tab dropdown>
 #The first 2 items use ordered lists, which will show links as list items too.
 #[[#Dropdown demos|Example link]]
@@ -148,13 +192,34 @@ Here you can see the difference between unordered and ordered lists within dropd
 [[#Dropdown demos|Example link]]
 </tab>
 
-===== Inline dropdowns =====
+==== Inline dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown inline&gt;
+*You can do anything you'd normally do in a dropdown
+*This box will fit in with the text.
+&lt;/tab&gt;
+</pre></tab>
+
 It is also possible to create inline dropdowns: <tab dropdown inline>
 *You can do anything you'd normally do in a dropdown
 *This box will fit in with the text.
 </tab>. This will also not interrupt the flow of the text.
 
-===== Nested lists =====
+==== Nested lists ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown&gt;
+*This dropdown menu demonstrates dropdown menus with multiple levels.
+*Hovering over a list item with further lists nested within it will cause the next level to show up
+*Hover over this item to see
+**This list now shows up.
+**Nested lists can also contain even more lists
+**See this item for example
+***This is a third level menu
+**This can go on for any amount of levels.
+*Multiple sub-menus are also allowed
+**Such as this one.
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown>
 *This dropdown menu demonstrates dropdown menus with multiple levels.
@@ -169,7 +234,19 @@ It is also possible to create inline dropdowns: <tab dropdown inline>
 **Such as this one.
 </tab>
 
-===== Alternating ordered and unordered lists =====
+==== Alternating ordered and unordered lists ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown&gt;
+*It is possible to alternate between ordered and unordered lists, but not within sub-menus.
+*The first 2 items are unordered list items
+#And this is an ordered list item
+#*This is an unordered list item again
+#*This also ''has'' to be an unordered list item
+#*#This can be an ordered list item again though
+#*#But then this also has to be ordered.
+#*Within an individual sub-menu, it is not possible to change between ordered and unordered list items
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown>
 *It is possible to alternate between ordered and unordered lists, but not within sub-menus.
@@ -182,6 +259,19 @@ It is also possible to create inline dropdowns: <tab dropdown inline>
 #*Within an individual sub-menu, it is not possible to change between ordered and unordered list items
 </tab>
 
+----
+
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown&gt;
+*This item is in an unordered list, so it allows [[#Dropdown demos|in-line linking]].
+#This item and the next one are in an ordered list, so they turn links into list-items
+#[[#Dropdown demos|List-item links]]
+#*...with a sub-menu that uses unordered lists again, so allows [[#Dropdown demos|in-line linking]] again.
+#*#And this sub-menu again creates...
+#*#[[#Dropdown demos|...list-item links]]
+&lt;/tab&gt;
+</pre></tab>
+
 <tab dropdown>
 *This item is in an unordered list, so it allows [[#Dropdown demos|in-line linking]].
 #This item and the next one are in an ordered list, so they turn links into list-items
@@ -191,12 +281,12 @@ It is also possible to create inline dropdowns: <tab dropdown inline>
 #*#[[#Dropdown demos|...list-item links]]
 </tab>
 
-=== Tab menus ===
-==== Documentation ====
+== Tab menus ==
+=== Documentation ===
 
 Tab menus can be used to make it possible to switch between different layouts. Anything within <code><nowiki><tabs> ... </tabs></nowiki></code> tags is rendered as a tab menu. Individual tabs are then defined via a <code>&lt;tab&gt;</code> tag.
 
-===== Available attributes =====
+==== Available attributes ====
 ;<code>&lt;tabs&gt;</code>
 *<code>container</code> - Use this attribute to define any styles for the tabs container. Styles defined here will only affect the container of the tabs, not the labels.
 *<code>plain</code> - If this attribute is set, the tab interface will be a much more plain layout, without a border around the container, and with the tab labels just being buttons above it, instead of the typical tab layout. This can be used to get more freedom in styling the interface.
@@ -213,11 +303,11 @@ Tab menus can be used to make it possible to switch between different layouts. A
 **[https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#class <code>class</code>] - Adds classes to the box.
 **[https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#id <code>id</code>] - Adds an id to the box. This id must be unique on the page, as with any id.
 
-===== Self-closing tabs =====
+==== Self-closing tabs ====
 
 Self-closing tabs can be used to define a list of tabs at the top of the tab menu, for later use via the <code>index</code> attribute. Self-closing tabs only have an effect when a name is defined, and no (valid) index is defined. The syntax for self-closing tabs is <code>&lt;tab name="name" /&gt;</code>
 
-===== Parser function =====
+==== Parser function ====
 
 As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> parser function can also be used to simplify the syntax for tabs. The syntax for this parser function allows the following syntaxes:
 
@@ -250,11 +340,25 @@ As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> p
 *The tab must contain nothing other than a dollar sign and a number directly after it. Surrounding whitespace is allowed.
 *The parser function's <code>n</code>th parameter must be defined. <code>n</code> may also be bigger than the current tab index (so, <code><nowiki>{{#tab:#3,#5|$2|Hi}}</nowiki></code> would put "Hi" in both tab 3 and 5).
 *The parser function's <code>n</code>th parameter must contain something other than just whitespace. Recursive references won't work, so <code><nowiki>{{#tab:|Hi|$1|$2}}</nowiki></code> will put "Hi" in tabs 1 and 2, and the literal text "$1" in tab 3.
+|-
+|<code style="color: green;"><nowiki>{{#tab:|3=content 3| 5 = content 5}}</nowiki></code>
+|You can also refer to the tab '''index''' (so not the tab name) by putting the tab index before an equals sign (<code>=</code>) in the parameter. This will not work for tab names, to prevent unwanted effects caused by equals signs inside the tab (which then would cause all of the preceding text to be interpreted as a tab name). This syntax will override an index or name specified using the syntax of the above code examples.
 |}
 
-==== Demos ====
+=== Demos ===
 
-===== Naming and reusing tabs, and default text =====
+==== Naming and reusing tabs, and default text ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+&lt;tab name="First" style="border:1px solid black;"&gt;This tab has a defined <code>name</code>. It also has a <code>style</code> attribute set to <code>style="border:1px solid black;"</code>.&lt;/tab&gt;
+&lt;tab name="Second" style="background:salmon;"&gt;This tab also has a defined <code>name</code> attribute, and its <code>style</code> attribute set to <code>style="background:salmon;"</code>.&lt;/tab&gt;
+&lt;tab&gt;This tab has no attributes defined. Its name is automatically generated based on its position.&lt;/tab&gt;
+&lt;tab index="1"&gt;This is a seperate tab. It has a defined <code>index</code> attribute with value "1". This makes it also show when the first tab is selected.&lt;/tab&gt;
+&lt;tab name="Second"&gt;This is a seperate tab. It has a defined <code>name</code> attribute, with a value equal to that of the second tab ("Second"). It therefore also shows when the second tab is opened.&lt;/tab&gt;
+----
+This line of text will show for every tab you view. It is not placed within <code>&lt;tab&gt; tags, and can be used as default content for the tab menu.
+&lt;/tabs&gt;
+</pre></tab>
 
 <tabs>
 <tab name="First" style="border:1px solid black;">This tab has a defined <code>name</code>. It also has a <code>style</code> attribute set to <code>style="border:1px solid black;"</code>.</tab>
@@ -266,7 +370,19 @@ As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> p
 This line of text will show for every tab you view. It is not placed within <code>&lt;tab&gt; tags, and can be used as default content for the tab menu.
 </tabs>
 
-===== <code>block</code> and <code>inline</code> tabs =====
+==== <code>block</code> and <code>inline</code> tabs ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+&lt;tab name="Default 1" style="background:lightgreen;"&gt;First tab.&lt;/tab&gt;
+&lt;tab name="Default 2" style="background:lightgreen;"&gt;Second tab.&lt;/tab&gt;
+&lt;tab name="Inline" style="background:salmon;"&gt;Third tab.&lt;/tab&gt;
+&lt;tab name="Block" style="background:royalblue;"&gt;Fourth tab.&lt;/tab&gt;
+&lt;tab index="1"&gt;This is a seperate tab. It demonstrates what happens if a tab has no <code>inline</code> or <code>block</code> attributes defined. If the tab contains a lot of text, it will automatically be forced to a new line, despite extra space being available at the end of the previous line.&lt;/tab&gt;
+&lt;tab index="2"&gt;This seperate tab isn't forced to a new line, since it's short enough.&lt;/tab&gt;
+&lt;tab index="3" inline&gt;This is a seperate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.&lt;/tab&gt;
+&lt;tab index="4" block&gt;Despite fitting on the previous line, the <code>block</code> attribute forces this seperate tab to a new line&lt;/tab&gt;
+&lt;/tabs&gt;
+</pre></tab>
 
 <tabs>
 <tab name="Default 1" style="background:lightgreen;">First tab.</tab>
@@ -279,7 +395,14 @@ This line of text will show for every tab you view. It is not placed within <cod
 <tab index="4" block>Despite fitting on the previous line, the <code>block</code> attribute forces this seperate tab to a new line</tab>
 </tabs>
 
-===== <code>plain</code> tab interfaces =====
+==== <code>plain</code> tab interfaces ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs plain style="width:250px;"&gt;
+&lt;tab&gt;This tab interface doesn't have a box surrounding it, but just has buttons above it.&lt;/tab&gt;
+&lt;tab&gt;This makes it a bit easier to customise the box&lt;/tab&gt;
+&lt;tab&gt;It is also more useful for storing tabbed tables in&lt;/tab&gt;
+&lt;/tabs&gt;
+</pre></tab>
 
 <tabs plain style="width:250px;">
 <tab>This tab interface doesn't have a box surrounding it, but just has buttons above it.</tab>
@@ -287,7 +410,14 @@ This line of text will show for every tab you view. It is not placed within <cod
 <tab>It is also more useful for storing tabbed tables in</tab>
 </tabs>
 
-===== Inline switching parts =====
+==== Inline switching parts ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+This line of text contains &lt;tab name="Exaggerating"&gt;over 9000&lt;/tab&gt;&lt;tab name="Truth"&gt;a couple of&lt;/tab&gt; switching parts. The &lt;tab index="1"&gt;biggest by far&lt;/tab&gt;&lt;tab index="2"&gt;main&lt;/tab&gt; part of this tab's contents is placed outside any &lt;tab index="1"&gt;awesome&lt;/tab&gt; <code>&lt;tab&gt;</code> tags.
+
+The switching &lt;tab index="1"&gt;epicness&lt;/tab&gt;&lt;tab index="2"&gt;parts&lt;/tab&gt; are made by putting <code>&lt;tab&gt;</code> tags within the flow of the text.
+&lt;/tabs&gt;
+</pre></tab>
 
 This tab menu uses the regular syntax using the <code>&lt;tab&gt;</code> tag.
 <tabs>
@@ -298,15 +428,34 @@ The switching <tab index="1">epicness</tab><tab index="2">parts</tab> are made b
 ----
 This tab menu looks exactly the same, but uses the parser function <code><nowiki>{{#tab:name1, name2|content1|content2}}</nowiki></code> or <code><nowiki>{{#tab: #1, #2|content1|content2}}</nowiki></code>. This makes the code a bit shorter.
 
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+This line of text contains {{#tab:Exagerrating,Truth|over 9000|a couple of}} switching parts. The {{#tab:|very biggest|main}} part of this tab's contents is placed outside any {{#tab:|awesome}} <code>&lt;tab&gt;</code> tags.
+
+The switching {{#tab:|epicness|parts}} are made by putting <code>&lt;tab&gt;</code> tags within the flow of the text.
+&lt;/tabs&gt;
+</pre></tab>
+
+
 <tabs>
 This line of text contains {{#tab:Exagerrating,Truth|over 9000|a couple of}} switching parts. The {{#tab:|very biggest|main}} part of this tab's contents is placed outside any {{#tab:|awesome}} <code>&lt;tab&gt;</code> tags.
 
 The switching {{#tab:|epicness|parts}} are made by putting <code>&lt;tab&gt;</code> tags within the flow of the text.
 </tabs>
 
-===== Predefining tabs and reference syntax =====
+==== Predefining tabs and reference syntax ====
 
 Tabs can be predefined via either [[#Self-closing tabs|self-closing tabs]] or the [[#Parser function|parser function]]. This tab menu's third tab also uses the reference syntax for the parser function.
+
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+&lt;tab name="First"/&gt;{{#tab:Second,Third}}
+The {{#tab:|first|second|third}} tab is predefined via ''{{#tab:|a self-closing <code>&lt;tab /&gt;</code> tag|the parser-function syntax|$2}}''.
+
+&lt;tab index="3"&gt;The italic text in the above line is defined via a <code>$2</code> reference. This automatically inserts the contents for the second value entered into the third tab too.
+&lt;/tab&gt;
+&lt;/tabs&gt;
+</pre></tab>
 
 <tabs>
 <tab name="First"/>{{#tab:Second,Third}}
@@ -316,7 +465,7 @@ The {{#tab:|first|second|third}} tab is predefined via ''{{#tab:|a self-closing 
 </tab>
 </tabs>
 
-=== Nested combinations ===
+== Nested combinations ==
 
 In some cases, it is possible to put multiple of these boxes inside each other. For this to work however, the <code>#tag:tabs</code>, <code>#tag:tab</code> or <code>#tab:</code> parser functions will have to be used whenever two of the same tags are used anywhere within each other. This is required because otherwise the wikicode parser will recognise the closing tag for the nested tag as the closing tag for the outer tag, and skip the rest of the content, which could cause problems.
 
@@ -324,9 +473,18 @@ For the <code>#tag:</code> parser function, even boolean attributes (such as <co
 
 All combinations of nesting multiple tags will work, except for nesting ''any'' tab menus inside other tab menus.
 
-==== Nested tab menus ====
+=== Nested tab menus ===
 
-===== Inside toggle boxes =====
+==== Inside toggle boxes ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab&gt;
+This tab contains a tab menu:
+
+&lt;tabs&gt;
+{{#tab:First, Second|These tabs use the <code>#tab:</code> parser function to create the nested tabs.|Placing <code>&lt;tab&gt;</code> tags inside another <code>&lt;tab&gt;</code> tag will cause the parser to recognise the inner closing tag as the closing tag for the outer tag, which messes it up.}}
+&lt;/tabs&gt;
+&lt;/tab&gt;
+</pre></tab>
 
 <tab>
 This tab contains a tab menu:
@@ -336,7 +494,16 @@ This tab contains a tab menu:
 </tabs>
 </tab>
 
-===== Inside dropdowns =====
+==== Inside dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown&gt;
+And here is another tab menu:
+&lt;tabs&gt;
+{{#tag:tab|These tabs are generated via the <code>#tag:tab</code> parser function|name="First"}}
+{{#tag:tab|This is required, for the same reason as explained in the Second tab in the toggle box example above.|name="Second"}}
+&lt;/tabs&gt;
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown>
 And here is another tab menu:
@@ -346,16 +513,33 @@ And here is another tab menu:
 </tabs>
 </tab>
 
-==== Nested toggle/dropdown boxes ====
+=== Nested toggle/dropdown boxes ===
 
-===== Toggle boxes in toggle boxes =====
+==== Toggle boxes in toggle boxes ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab&gt;
+This toggle box has another toggle box nested inside it.
+
+{{#tag:tab|This tab is generated by the <code>#tag:tab</code> parser function.|openname=Show|closename="Hide"}}
+&lt;/tab&gt;
+</pre></tab>
+
 <tab>
 This toggle box has another toggle box nested inside it.
 
 {{#tag:tab|This tab is generated by the <code>#tag:tab</code> parser function.|openname=Show|closename="Hide"}}
 </tab>
 
-===== Toggle boxes in dropdowns =====
+==== Toggle boxes in dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+{{#tag:tab|
+It is also possible to use the <code>#tag:tab</code> parser function for the outer tab.
+&lt;tab collapsed&gt;
+This inner toggle box is made via the <code>&lt;tag&gt;</code> syntax.
+&lt;/tab&gt;
+|dropdown=true}}
+</pre></tab>
+
 {{#tag:tab|
 It is also possible to use the <code>#tag:tab</code> parser function for the outer tab.
 <tab collapsed>
@@ -363,7 +547,7 @@ This inner toggle box is made via the <code>&lt;tag&gt;</code> syntax.
 </tab>
 |dropdown=true}}
 
-===== Toggle boxes and dropdowns in tab boxes =====
+==== Toggle boxes and dropdowns in tab boxes ====
 
 If you want to place a toggle box or a dropdown inside a tab navigation, and want the toggle box to show up for every tab as opposed to just the tab it's nested in, first a parent <code>&lt;tab&gt;</code> tab must be made, with <code>index="*"</code>, so that the toggle box won't be recognised as a seperate tab content.
 
@@ -374,6 +558,22 @@ That way, the outer <code>&lt;tab&gt;</code> tag will be recognised as a tab con
 If you want the contents of the toggle box inside the tab menu to be able to change depending on the selected tab, you should use the <code>nested="true"</code> attribute on the tag. This can be done by setting the very last argument of the <code>#tab:</code> parser function or the <code>#tag:tab</code> parser function to <code>nested=true</code>.
 
 See this demo for an example of how to make this work:
+
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tabs&gt;
+&lt;tab name="Toggle box"&gt;
+This first tab has a toggle box nested inside it
+{{#tab:Toggle|This toggle box is made via the <code>#tab:</code> parser function.}}
+&lt;/tab&gt;
+&lt;tab name="Dropdown"&gt;
+This second tab has a dropdown nested inside it
+{{#tag:tab|This dropdown is created via the <code>#tag:tab</code> parser function, since it's not possible to define attributes such as <code>dropdown</code> via the <code>#tab:</code> parser function.|dropdown=true}}
+&lt;/tab&gt;
+&lt;tab index="*" block&gt;
+{{#tag:tab|This toggle box shows up inside {{#tab:|every|each of the|nested=true}} tab{{#tag:tab|s|index=2|nested=true}}, because the containing tab tag has got its index attribute set to <code>index="*"</code>. It also has a <code>block</code> attribute.|openname=Open|closename=Close}}
+&lt;/tab&gt;
+&lt;/tabs&gt;
+</pre></tab>
 
 <tabs>
 <tab name="Toggle box">
@@ -389,13 +589,28 @@ This second tab has a dropdown nested inside it
 </tab>
 </tabs>
 
-===== Toggle boxes in dropdowns =====
+==== Toggle boxes in dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown name="nested toggle boxes" style="width:250px"&gt;
+This dropdown has a nested toggle box that has <code>inline</code> and <code>collapsed</code> attributes filled in: {{#tag:tab|You can do the same things with nested boxes as you'd normally do outside other tags.|inline=true|collapsed=true}}
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown name="nested toggle boxes" style="width:250px">
 This dropdown has a nested toggle box that has <code>inline</code> and <code>collapsed</code> attributes filled in: {{#tag:tab|You can do the same things with nested boxes as you'd normally do outside other tags.|inline=true|collapsed=true}}
 </tab>
 
-===== Dropdowns in dropdowns =====
+==== Dropdowns in dropdowns ====
+<tab openname="Show code" closename="Hide code" collapsed block style="max-width:100%;"><pre style="overflow:auto;">
+&lt;tab dropdown name="nested dropdowns"&gt;
+*It is even possible to have a dropdown inside a list item in another dropdown box
+*{{#tag:tab|This a dropdown inside a list in the outer dropdown menu|dropdown=true}}
+*And it is even possible to have a dropdown inside sub-menus in the dropdown...
+**{{#tag:tab|It also works normally in sub-menus, although <code>style="width:186px;"</code> would be recommended. Although making the encasing <code>&lt;tab&gt;</code> wider using <code>style="width:214px;"</code> would work just as well.|dropdown=true|style=width:186px;}}
+Or if you want, you can place it outside lists too.
+{{#tag:tab|Here's a dropdown inside a dropdown, but not in any list|dropdown=true}}
+&lt;/tab&gt;
+</pre></tab>
 
 <tab dropdown name="nested dropdowns">
 *It is even possible to have a dropdown inside a list item in another dropdown box

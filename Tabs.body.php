@@ -286,13 +286,18 @@ class Tabs {
 		for ($i = 1; $i+1 < $args; $i++) {
 			// $i+1 is used in this loop because the arguments are ($parser, $index, PARAM_1, PARAM_2, ...);
 			// so to get PARAM_n, you must do func_get_arg(n+1).
-			$val = $i+1 < $argcount ? func_get_arg($i+1) : '';
-			if (preg_match("/^nested=/", trim($val)) && $i+2 == $argcount) {
+			$val = trim($i+1 < $argcount ? func_get_arg($i+1) : '');
+			if (preg_match("/^nested=/", $val) && $i+2 == $argcount) {
 				//if the last parameter has |nested=true then make all tabs nested
 				$nested = true;
 				continue; //there may still be self-closing tags to define based on name. So, continue the loop.
 			}
-			$index_i = isset($index[$i-1]) ? trim($index[$i-1]) : '';
+			if (preg_match("/^(\d+)\s*=/", $val, $matches)) { //if a parameter has |n=content, use n as index.
+				$index_i = intval($matches[1]); //$matches stores the result of the above preg_match.
+				$val = preg_replace("/^\d+\s*=\s*/", "", $val); //remove the index from the tab content.
+			} else {
+				$index_i = isset($index[$i-1]) ? trim($index[$i-1]) : '';
+			}
 			if (preg_match('/^#\d+$/',$index_i) && intval(substr($index_i,1)) > 0) {
 				//only assign an index if the attribute is just digits, preceded by #
 				$attr = 'index="'.substr($index_i,1).'"';
@@ -306,13 +311,13 @@ class Tabs {
 				$attr = "index=\"$i\"";
 				$isname = false;
 			}
-			if (preg_match('/^\$\d+$/', trim($val))) {
+			if (preg_match('/^\$\d+$/', $val)) {
 				// Copying over the value of other parameters for the syntax $n. Must not contain anything other than $n in the value.
-				$ref = intval(substr(trim($val), 1));
+				$ref = intval(substr($val, 1));
 				if ($ref+1 < $argcount && $ref > 0) $refval = func_get_arg($ref+1); // Only do this when the referred-to value exists
 				if (trim($refval)) $val = $refval; // only if the referred-to value is not empty, assign its value to this parameter
 			}
-			if (trim($val)) { // if content is defined for this tab
+			if ($val) { // if content is defined for this tab
 				$output .= "<tab $attr>$val</tab>";
 			} elseif ($isname) { // if no content is defined, but a name is defined. Makes it easier to define all tabs at the top.
 				$output .= "<tab $attr />";
