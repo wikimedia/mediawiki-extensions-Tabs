@@ -31,7 +31,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:Tabs',
 	'descriptionmsg' => 'tabs-desc',
 	'version'        => '1.3.2',
-	'license-name'   => 'GPLv2+'
+	'license-name'   => 'GPL-2.0+'
 );
 
 $dir = __DIR__ . '/';
