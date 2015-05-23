@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Metalhead64",
-			"Kghbln"
+			"Kghbln",
+			"Purodha"
 		]
 	},
-	"tabs-desc": "Ergänzt die Tags <code>&lt;tabs&gt;</code> und <code>&lt;tab&gt;</code> zum Erstellen von Registern",
+	"tabs-desc": "Fügt die Tags <code>&lt;tabs&gt;</code> und <code>&lt;tab&gt;</code> zum Erstellen von Registern ins Wiki ein",
 	"tabs-tab-label": "Registerkarte $1",
 	"tabs-toggle-open": "Inhalte anzeigen",
 	"tabs-toggle-close": "Inhalte ausblenden",
