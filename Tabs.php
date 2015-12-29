@@ -51,4 +51,5 @@ $wgResourceModules['ext.tabs'] = array(
 	),
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Tabs',
+	'position' => 'top',
 );
