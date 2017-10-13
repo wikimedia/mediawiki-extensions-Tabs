@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Red Winged Duck"
+		]
+	},
+	"tabs-desc": "Дадае тэгі <code>&lt;tabs&gt;</code> і <code>&lt;tab&gt;</code> для стварэньня разьметкі з укладкамі",
+	"tabs-tab-label": "Укладка $1"
+}
