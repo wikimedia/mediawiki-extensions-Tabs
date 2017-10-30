@@ -37,7 +37,6 @@ $wgExtensionCredits['parserhook'][] = array(
 $dir = __DIR__ . '/';
 $wgMessagesDirs['Tabs'] = __DIR__ . '/i18n';
 $wgAutoloadClasses['Tabs'] = $dir . 'Tabs.body.php';
-$wgExtensionMessagesFiles['Tabs'] =  $dir . 'Tabs.i18n.php';
 $wgExtensionMessagesFiles['TabsMagic'] =  $dir . 'Tabs.i18n.magic.php';
 $wgHooks['ParserFirstCallInit'][] = 'Tabs::init';
 $wgResourceModules['ext.tabs'] = array(
