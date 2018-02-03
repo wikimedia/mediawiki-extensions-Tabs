@@ -27,8 +27,7 @@
 				"tabs-toggle-close",
 				"tabs-dropdown-label",
 				"tabs-dropdown-bgcolor"
-			],
-			"position": "top"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
