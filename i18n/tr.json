@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tsiligkir"
+			"Tsiligkir",
+			"Hedda"
 		]
 	},
-	"tabs-toggle-open": "İçeriği göster"
+	"tabs-toggle-open": "İçeriği göster",
+	"tabs-toggle-close": "İçeriği gizle"
 }
