@@ -1,7 +1,7 @@
 <?php
 /**
  * This tag extension creates the <tabs> and <tab> tags for creating tab interfaces and toggleboxes on wiki pages.
- * 
+ *
  * @example Tabs/Tabs.examples.txt
  *
  * @section LICENSE
@@ -19,7 +19,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- * 
+ *
  * @file
  */
 
@@ -47,7 +47,7 @@ class Tabs {
 		$parser->setFunctionHook('tab', array(new self(), 'renderPf'));
 		return true;
 	}
-	
+
 	/**
 	 * Converts each <tab> into either a togglebox, or the contents of one tab within a <tabs> tag.
 	 *
@@ -78,9 +78,9 @@ class Tabs {
 		} else {
 			$index = count($names)+1; // index of this tab in this scope. Plus one because tabs are 1-based, arrays are 0-based.
 		}
-		
+
 		$classPrefix = '';
-		if ($nested || $nestAttr) {// Note: This is defined seperately for toggleboxes, because of the different classes required.
+		if ($nested || $nestAttr) {// Note: This is defined separately for toggleboxes, because of the different classes required.
 			$classPrefix .= "tabs-content tabs-content-$index";
 		}
 		if (isset($attr['class'])) {
@@ -233,7 +233,7 @@ class Tabs {
 		if (isset($attr['container'])) {
 			$containerStyle = htmlspecialchars($attr['container']);
 		}
-		
+
 		// CLEARING:
 		$tabnames = $parser->tabsData['tabNames']; // Copy this array's value, to reset it to this value after parsing the inner <tab>s.
 		$parser->tabsData['tabNames'] = array(); // temporarily clear this array, so that only the <tab>s within this <tabs> tag are tracked.
@@ -244,9 +244,9 @@ class Tabs {
 		// AND RESETTING (to their original values):
 		$parser->tabsData['tabNames'] = $tabnames; // reset to the value it had before parsing the nested <tab>s. All nested <tab>s are "forgotten".
 		$parser->tabsData['nested'] = false; // reset
-		
+
 		/**
-		 * The default value for $labels creates a seperate input for the default tab, which has no label attached to it.
+		 * The default value for $labels creates a separate input for the default tab, which has no label attached to it.
 		 * This is to allow any scripts to be able to check easily if the user has changed the shown tab at all,
 		 * by checking if this 0th input is checked.
 		 */
@@ -266,14 +266,14 @@ class Tabs {
 			$toStyle = count($indices);
 			$this->insertCSSJS($parser); // reload dynamic CSS with new amount
 		}
-		
+
 		return "$form<div$attrStr>$labels<div class=\"tabs-container\" style=\"$containerStyle\">$newstr</div></div>";
 	}
 
 	/**
 	 * Renders parser function for simpler inline tab syntax ({{#tab:}})
 	 * @param Parser $parser
-	 * @param string $index A comma-seperated list of tab names or indices. Integers prefixed with '#' will always be interpreted as indices.
+	 * @param string $index A comma-separated list of tab names or indices. Integers prefixed with '#' will always be interpreted as indices.
 	 * @return string A converted list of <tab> tags, further to be processed by the parser.
 	 */
 	public function renderPf($parser, $index) {
@@ -329,7 +329,7 @@ class Tabs {
 		}
 		return array( $output, 'noparse' => false );
 	}
-	
+
 	/**
 	 * Template for the tab label
 	 * @param int $tabN The index of the individual tab.
@@ -342,7 +342,7 @@ class Tabs {
 		return "<input type=\"radio\" form=\"tabs-inputform\" id=\"tabs-input-$tagN-$tabN\" name=\"tabs-$tagN\" class=\"tabs-input tabs-input-$tabN\"/>".
 				"<label class=\"tabs-label\" for=\"tabs-input-$tagN-$tabN\" data-tabpos=\"$tabN\">$label</label><wbr/>";
 	}
-	
+
 	/**
 	 * Filters list of entered parameters to only the HTML-safe attributes
 	 * @param array $attr The full list of entered attributes
@@ -363,7 +363,7 @@ class Tabs {
 		}
 		return $attrStr;
 	}
-		
+
 	/**
 	 * Insert the static and dynamic CSS and JS into the page
 	 * @param Parser $parser
