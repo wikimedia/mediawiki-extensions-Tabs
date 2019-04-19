@@ -114,9 +114,9 @@ Dropdown menus are heavily based on the code for toggle boxes, so will also rese
 
 Since dropdown menus use the <code>&lt;menu&gt;</code> tag for their content, it is permitted to use <code>&lt;li&gt;</code> tags directly within the dropdown menu's contents. Any other content is also allowed.
 
-Dropdown menus will convert all list items and links placed within to specially styled list items. The only exception is that links ''only'' show as they normally do when placed within unordered lists ([http://www.mediawiki.org/wiki/Help:Lists any line starting with <code>*</code>]). In ordered lists, or outside list items, they take up the full list item. This is also the only difference between ordered and unordered lists.
+Dropdown menus will convert all list items and links placed within to specially styled list items. The only exception is that links ''only'' show as they normally do when placed within unordered lists ([https://www.mediawiki.org/wiki/Help:Lists any line starting with <code>*</code>]). In ordered lists, or outside list items, they take up the full list item. This is also the only difference between ordered and unordered lists.
 
-Any nested lists will be rendered as sub-menus in the dropdown menu. Nested lists are created by starting a line with [http://www.mediawiki.org/wiki/Help:Lists multiple <code>*</code> or <code>#</code> characters]. There is one limitation with this however: Individual nested lists can not alternate between ordered and unordered lists. Seperate levels can, however. For example, this is not allowed:
+Any nested lists will be rendered as sub-menus in the dropdown menu. Nested lists are created by starting a line with [https://www.mediawiki.org/wiki/Help:Lists multiple <code>*</code> or <code>#</code> characters]. There is one limitation with this however: Individual nested lists can not alternate between ordered and unordered lists. Seperate levels can, however. For example, this is not allowed:
 <pre>
 *Menu item 1
 *Menu item 2
