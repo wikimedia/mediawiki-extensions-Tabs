@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Tsiligkir",
-			"Hedda"
+			"Hedda",
+			"BaRaN6161 TURK"
 		]
 	},
+	"tabs-desc": "Sekmeli düzen oluşturmak için <code>&lt;tabs&gt;</code> ve <code>&lt;tab&gt;</code> etiketlerini ekler",
+	"tabs-tab-label": "Sekme $1",
 	"tabs-toggle-open": "İçeriği göster",
-	"tabs-toggle-close": "İçeriği gizle"
+	"tabs-toggle-close": "İçeriği gizle",
+	"tabs-dropdown-label": "Açılır menüyü göster"
 }
