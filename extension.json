@@ -18,7 +18,7 @@
 		"TabsMagic": "Tabs.i18n.magic.php"
 	},
 	"AutoloadClasses": {
-		"Tabs": "Tabs.body.php"
+		"Tabs": "includes/Tabs.php"
 	},
 	"ResourceModules": {
 		"ext.tabs": {
