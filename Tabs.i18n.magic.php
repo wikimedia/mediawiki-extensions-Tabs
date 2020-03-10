@@ -6,11 +6,11 @@
  * @ingroup Extensions
  */
 
-$magicWords = array();
+$magicWords = [];
 
 /** English
  * @author Pim (Joeytje50)
  */
-$magicWords['en'] = array(
-	'tab' => array(0, 'tab'),
-);
+$magicWords['en'] = [
+	'tab' => [ 0, 'tab' ],
+];
