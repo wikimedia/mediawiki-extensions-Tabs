@@ -34,8 +34,8 @@
 		}
 	},
 	"ResourceFileModulePaths": {
-		"localBasePath": "",
-		"remoteExtPath": "Tabs"
+		"localBasePath": "resources",
+		"remoteExtPath": "Tabs/resources"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "Tabs::init"
