@@ -24,7 +24,7 @@
  * @file
  */
 
- if ( function_exists( 'wfLoadExtension' ) ) {
+if ( function_exists( 'wfLoadExtension' ) ) {
 	wfLoadExtension( 'Tabs' );
 	// Keep i18n globals so mergeMessageFileList.php doesn't break
 	$wgMessagesDirs['Tabs'] = __DIR__ . '/i18n';
