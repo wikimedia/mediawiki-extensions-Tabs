@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vitorvicentevalente",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Vitorvicentevalente"
 		]
 	},
 	"tabs-desc": "Acrescenta as etiquetas <code>&lt;tabs&gt;</code> e <code>&lt;tab&gt;</code> para criação de separadores.",
