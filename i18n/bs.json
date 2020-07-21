@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Srdjan m"
+			"Srdjan m",
+			"Srđan"
 		]
 	},
 	"tabs-desc": "Dodaje oznake <code>&lt;tabs&gt;</code> i <code>&lt;tab&gt;</code> za pravljenje rasporeda u obliku kartica.",
