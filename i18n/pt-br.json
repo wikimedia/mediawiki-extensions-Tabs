@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Eduardoaddad"
 		]
 	},
 	"tabs-desc": "Acrescenta as etiquetas <code>&lt;tabs&gt;</code> e <code>&lt;tab&gt;</code> para criação de separadores.",
