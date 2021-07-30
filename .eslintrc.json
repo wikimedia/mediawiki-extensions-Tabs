@@ -9,7 +9,6 @@
 		"jQuery": false
 	},
 	"rules": {
-		"vars-on-top": "warn",
 		"max-statements-per-line": "warn",
 		"no-jquery/no-class-state": "warn",
 		"no-jquery/no-global-selector": "warn"
