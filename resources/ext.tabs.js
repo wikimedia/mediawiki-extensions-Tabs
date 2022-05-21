@@ -5,7 +5,7 @@ jQuery( function ( $ ) {
 	 * Does not scroll to exactly the tab's height, but just a bit above it.
 	 */
 	function moveToHash() {
-		var hash = location.hash.substr( 1 ).replace( /_/g, ' ' ).trim();
+		var hash = location.hash.slice( 1 ).replace( /_/g, ' ' ).trim();
 		if ( !hash || $( location.hash ).length ) {
 			return; // if there's no hash defined, or an element on the page with the same hash already, stop looking for tabs
 		}
