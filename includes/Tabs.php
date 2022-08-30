@@ -54,9 +54,10 @@ class Tabs {
 	 * @param string $input
 	 * @param array $attr
 	 * @param Parser $parser
+	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
-	public function renderTab( $input, $attr = [], $parser ) {
+	public function renderTab( $input, $attr = [], $parser, $frame ) {
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS( $parser ) : ''; // init styles, set the return <form> tag as $form.
 		++$parser->tabsData['tabCount'];
 		$names = &$parser->tabsData['tabNames'];
@@ -123,7 +124,7 @@ class Tabs {
 		if ( $input === null ) { return ''; // return empty string if the tag is self-closing. This can be used to pre-define tabs for referring to via the index later.
 		}
 		$parser->tabsData['nested'] = false; // temporary
-		$newstr = $parser->recursiveTagParse( $input );
+		$newstr = $parser->recursiveTagParse( $input, $frame );
 		$parser->tabsData['nested'] = $nested; // revert
 		return $form . $container[0] . '<' . $container[2] . $container[3] . ">$newstr</" . $container[2] . '>' . $container[1];
 	}
@@ -218,9 +219,10 @@ class Tabs {
 	 * @param string $input
 	 * @param array $attr
 	 * @param Parser $parser
+	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
-	public function renderTabs( $input, $attr = [], $parser ) {
+	public function renderTabs( $input, $attr = [], $parser, $frame ) {
 		if ( !isset( $input ) ) { return ''; // Exit if the tag is self-closing. <tabs> is a container element, so should always have something in it.
 		}
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS( $parser ) : ''; // init styles, set the return <form> tag as $form.
@@ -244,7 +246,7 @@ class Tabs {
 		$parser->tabsData['labels'] = []; // Reset after previous usage
 		$parser->tabsData['nested'] = true;
 		// PARSING
-		$newstr = $parser->recursiveTagParse( $input );
+		$newstr = $parser->recursiveTagParse( $input, $frame );
 		// AND RESETTING (to their original values):
 		$parser->tabsData['tabNames'] = $tabnames; // reset to the value it had before parsing the nested <tab>s. All nested <tab>s are "forgotten".
 		$parser->tabsData['nested'] = false; // reset
