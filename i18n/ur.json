@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Obaid Raza"
+		]
+	},
+	"tabs-desc": "ٹیب شدہ لے آؤٹ بنانے کے لیے <code><tabs></code> اور <code><tab></code> ٹیگز شامل کرتا ہے۔",
+	"tabs-tab-label": "$1 ٹیب",
+	"tabs-toggle-open": "مشمولات دکھائیں",
+	"tabs-toggle-close": "مشمولات چھپائیں",
+	"tabs-dropdown-label": "دیگر دکھائیں"
+}
