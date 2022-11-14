@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"tabs-desc": "Adde le etiquettas <code>&lt;tabs&gt;</code> e <code>&lt;tab&gt;</code> pro crear un disposition a schedas",
+	"tabs-tab-label": "Scheda $1",
+	"tabs-toggle-open": "Monstrar contento",
+	"tabs-toggle-close": "Celar contento",
+	"tabs-dropdown-label": "Monstrar menu disrolante"
+}
