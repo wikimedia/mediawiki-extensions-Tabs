@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"tabs-desc": "הוספת תגי <code>&lt;tabs&gt;</code> ו־<code>&lt;tab&gt;</code> ליצירת פריסה עם לשוניות",
+	"tabs-tab-label": "לשונית $1",
+	"tabs-toggle-open": "הצגת התוכן",
+	"tabs-toggle-close": "הסתרת תוכן",
+	"tabs-dropdown-label": "הצג תפריט נפתח"
+}
