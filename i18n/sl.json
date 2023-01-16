@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"tabs-desc": "Doda znački <code>&lt;tabs&gt;</code> in <code>&lt;tab&gt;</code> za ustvarjanje postavitev z zavihki",
+	"tabs-tab-label": "Zavihek $1",
+	"tabs-toggle-open": "Prikaži vsebino",
+	"tabs-toggle-close": "Skrij vsebino",
+	"tabs-dropdown-label": "Prikaži spustni meni"
+}
