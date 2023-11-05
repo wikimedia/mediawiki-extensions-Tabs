@@ -57,7 +57,7 @@ class Tabs {
 	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
-	public function renderTab( $input, $attr = [], $parser, $frame ) {
+	public function renderTab( $input, array $attr, $parser, $frame ) {
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS( $parser ) : ''; // init styles, set the return <form> tag as $form.
 		++$parser->tabsData['tabCount'];
 		$names = &$parser->tabsData['tabNames'];
@@ -139,7 +139,7 @@ class Tabs {
 	 * @param Parser $parser
 	 * @return array The properties that should be applied to the return value for the calling renderTab function.
 	 */
-	public function renderBox( $input, &$attr = [], $parser ) {
+	public function renderBox( $input, array &$attr, $parser ) {
 		$nameAttrs = [
 			'name' => isset( $attr['name'] ),
 			'openname' => isset( $attr['openname'] ),
@@ -222,7 +222,7 @@ class Tabs {
 	 * @param bool|PPFrame $frame
 	 * @return string
 	 */
-	public function renderTabs( $input, $attr = [], $parser, $frame ) {
+	public function renderTabs( $input, array $attr, $parser, $frame ) {
 		if ( !isset( $input ) ) { return ''; // Exit if the tag is self-closing. <tabs> is a container element, so should always have something in it.
 		}
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS( $parser ) : ''; // init styles, set the return <form> tag as $form.
