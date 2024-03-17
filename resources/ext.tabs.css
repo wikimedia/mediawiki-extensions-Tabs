@@ -7,14 +7,14 @@
 
 /**
  * Regarding the usage of the body:not(oldbrowser) selector:
- * 
+ *
  * All browsers with support for :not() also support :checked
  * Putting body:not(oldbrowser) as part of the selector will cause only browsers with :checked support to render the styles
  * IE is not the only browser that lacks :checked support, so conditional comments are not an option here.
  * :not(oldbrowser) is chosen as selector, since the <body> tag can't also be an <oldbrowser> tag at the same time.
  * The only browsers with :checked support, but without :not() support are Opera 9.0-9.5 and Safari 3.1.*
  * Those browsers will have to rely on the JS alternative. If JS is disabled for them, all tabs will show at once.
- * this needs to be a seperate style, since old browsers will ignore the rule with :not() altogether.
+ * this needs to be a separate style, since old browsers will ignore the rule with :not() altogether.
  * Sources: https://developer.mozilla.org/en-US/docs/Web/CSS/:checked#Browser_compatibility,
  *          https://developer.mozilla.org/en-US/docs/Web/CSS/:not#Browser_compatibility
  */
@@ -59,7 +59,7 @@ body.tabs-oldbrowserscript .tabs-content {display: none;}
 
 /**
  * Regarding the * html and *+html selectors
- * 
+ *
  * IE ver. 5.5-7 support no inline-block on divs.
  * These selectors manage to select the <html> tag in versions 6 and 7 of IE, respectively.
  * Do not change .tabs-togglebox to a <span> just for supporting these versions of IE though, because block-level elements will be placed within it
