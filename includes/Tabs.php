@@ -121,7 +121,8 @@ class Tabs {
 				$parser->tabsData['labels'][intval( $index )] = $name;
 			}
 		}
-		if ( $input === null ) { return ''; // return empty string if the tag is self-closing. This can be used to pre-define tabs for referring to via the index later.
+		if ( $input === null ) {
+			return ''; // return empty string if the tag is self-closing. This can be used to pre-define tabs for referring to via the index later.
 		}
 		$parser->tabsData['nested'] = false; // temporary
 		$newstr = $parser->recursiveTagParse( $input, $frame );
@@ -223,7 +224,8 @@ class Tabs {
 	 * @return string
 	 */
 	public function renderTabs( $input, array $attr, $parser, $frame ) {
-		if ( !isset( $input ) ) { return ''; // Exit if the tag is self-closing. <tabs> is a container element, so should always have something in it.
+		if ( !isset( $input ) ) {
+			return ''; // Exit if the tag is self-closing. <tabs> is a container element, so should always have something in it.
 		}
 		$form = $parser->tabsData['tabCount'] === 0 ? $this->insertCSSJS( $parser ) : ''; // init styles, set the return <form> tag as $form.
 		if ( $parser->tabsData['tabsCount'] === 0 ) {
@@ -231,7 +233,8 @@ class Tabs {
 		}
 		$count = ++$parser->tabsData['tabsCount'];
 		$class = 'tabs tabs-tabbox';
-		if ( isset( $attr['plain'] ) ) { $class .= ' tabs-plain';
+		if ( isset( $attr['plain'] ) ) {
+			$class .= ' tabs-plain';
 		}
 		$attr['class'] = isset( $attr['class'] ) ? "$class " . $attr['class'] : $class;
 		$attrStr = $this->getSafeAttrs( $attr );
@@ -320,9 +323,11 @@ class Tabs {
 			if ( preg_match( '/^\$\d+$/', $val ) ) {
 				// Copying over the value of other parameters for the syntax $n. Must not contain anything other than $n in the value.
 				$ref = intval( substr( $val, 1 ) );
-				if ( $ref + 1 < $argcount && $ref > 0 ) { $refval = func_get_arg( $ref + 1 ); // Only do this when the referred-to value exists
+				if ( $ref + 1 < $argcount && $ref > 0 ) {
+					$refval = func_get_arg( $ref + 1 ); // Only do this when the referred-to value exists
 				}
-				if ( trim( $refval ) ) { $val = $refval; // only if the referred-to value is not empty, assign its value to this parameter
+				if ( trim( $refval ) ) {
+					$val = $refval; // only if the referred-to value is not empty, assign its value to this parameter
 				}
 			}
 			if ( $val ) { // if content is defined for this tab
@@ -368,7 +373,7 @@ class Tabs {
 				}
 				$attrStr .= " $i=\"" . $safe[$i] . '"';
 			} else {
-$safe[$i] = '';
+				$safe[$i] = '';
 			}
 		}
 		return $attrStr;
