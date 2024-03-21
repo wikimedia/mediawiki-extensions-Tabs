@@ -116,7 +116,7 @@ Since dropdown menus use the <code>&lt;menu&gt;</code> tag for their content, it
 
 Dropdown menus will convert all list items and links placed within to specially styled list items. The only exception is that links ''only'' show as they normally do when placed within unordered lists ([https://www.mediawiki.org/wiki/Help:Lists any line starting with <code>*</code>]). In ordered lists, or outside list items, they take up the full list item. This is also the only difference between ordered and unordered lists.
 
-Any nested lists will be rendered as sub-menus in the dropdown menu. Nested lists are created by starting a line with [https://www.mediawiki.org/wiki/Help:Lists multiple <code>*</code> or <code>#</code> characters]. There is one limitation with this however: Individual nested lists can not alternate between ordered and unordered lists. Seperate levels can, however. For example, this is not allowed:
+Any nested lists will be rendered as sub-menus in the dropdown menu. Nested lists are created by starting a line with [https://www.mediawiki.org/wiki/Help:Lists multiple <code>*</code> or <code>#</code> characters]. There is one limitation with this however: Individual nested lists can not alternate between ordered and unordered lists. Separate levels can, however. For example, this is not allowed:
 <pre>
 *Menu item 1
 *Menu item 2
@@ -137,7 +137,7 @@ But this is:
 *All attributes that are available for toggle boxes
 *<code>dropdown</code> - Must be defined for the toggle box to become a dropdown menu.
 *<code>openname</code> and <code>closename</code> - These attributes are identical to the <code>name</code> attribute in dropdown menus. It is not possible to let the dropdown switch between 2 values. If the <code>openname</code> attribute is set, that value will be used as label, otherwise the <code>closename</code> value is used, and if neither of those values is set, the <code>name</code> value is used.
-*<code>bgcolor</code> - Because of how the background-color styling for dropdown works (background styles are applied to all items within dropdowns, otherwise they would become transparent), background colors need to be defined seperately. This must be done in the <code>bgcolor</code> attribute. This attribute works exactly the same as the <code>background-color</code> style in CSS. This defaults to the value defined in ''MediaWiki:tabs-dropdown-bgcolor''.
+*<code>bgcolor</code> - Because of how the background-color styling for dropdown works (background styles are applied to all items within dropdowns, otherwise they would become transparent), background colors need to be defined separately. This must be done in the <code>bgcolor</code> attribute. This attribute works exactly the same as the <code>background-color</code> style in CSS. This defaults to the value defined in ''MediaWiki:tabs-dropdown-bgcolor''.
 
 === Dropdown demos ===
 
@@ -353,8 +353,8 @@ As an alternative for the tab tag, the <code><nowiki>{{#tab:}}</nowiki></code> p
 &lt;tab name="First" style="border:1px solid black;"&gt;This tab has a defined <code>name</code>. It also has a <code>style</code> attribute set to <code>style="border:1px solid black;"</code>.&lt;/tab&gt;
 &lt;tab name="Second" style="background:salmon;"&gt;This tab also has a defined <code>name</code> attribute, and its <code>style</code> attribute set to <code>style="background:salmon;"</code>.&lt;/tab&gt;
 &lt;tab&gt;This tab has no attributes defined. Its name is automatically generated based on its position.&lt;/tab&gt;
-&lt;tab index="1"&gt;This is a seperate tab. It has a defined <code>index</code> attribute with value "1". This makes it also show when the first tab is selected.&lt;/tab&gt;
-&lt;tab name="Second"&gt;This is a seperate tab. It has a defined <code>name</code> attribute, with a value equal to that of the second tab ("Second"). It therefore also shows when the second tab is opened.&lt;/tab&gt;
+&lt;tab index="1"&gt;This is a separate tab. It has a defined <code>index</code> attribute with value "1". This makes it also show when the first tab is selected.&lt;/tab&gt;
+&lt;tab name="Second"&gt;This is a separate tab. It has a defined <code>name</code> attribute, with a value equal to that of the second tab ("Second"). It therefore also shows when the second tab is opened.&lt;/tab&gt;
 ----
 This line of text will show for every tab you view. It is not placed within <code>&lt;tab&gt; tags, and can be used as default content for the tab menu.
 &lt;/tabs&gt;
@@ -364,8 +364,8 @@ This line of text will show for every tab you view. It is not placed within <cod
 <tab name="First" style="border:1px solid black;">This tab has a defined <code>name</code>. It also has a <code>style</code> attribute set to <code>style="border:1px solid black;"</code>.</tab>
 <tab name="Second" style="background:salmon;">This tab also has a defined <code>name</code> attribute, and its <code>style</code> attribute set to <code>style="background:salmon;"</code>.</tab>
 <tab>This tab has no attributes defined. Its name is automatically generated based on its position.</tab>
-<tab index="1">This is a seperate tab. It has a defined <code>index</code> attribute with value "1". This makes it also show when the first tab is selected.</tab>
-<tab name="Second">This is a seperate tab. It has a defined <code>name</code> attribute, with a value equal to that of the second tab ("Second"). It therefore also shows when the second tab is opened.</tab>
+<tab index="1">This is a separate tab. It has a defined <code>index</code> attribute with value "1". This makes it also show when the first tab is selected.</tab>
+<tab name="Second">This is a separate tab. It has a defined <code>name</code> attribute, with a value equal to that of the second tab ("Second"). It therefore also shows when the second tab is opened.</tab>
 ----
 This line of text will show for every tab you view. It is not placed within <code>&lt;tab&gt; tags, and can be used as default content for the tab menu.
 </tabs>
@@ -377,10 +377,10 @@ This line of text will show for every tab you view. It is not placed within <cod
 &lt;tab name="Default 2" style="background:lightgreen;"&gt;Second tab.&lt;/tab&gt;
 &lt;tab name="Inline" style="background:salmon;"&gt;Third tab.&lt;/tab&gt;
 &lt;tab name="Block" style="background:royalblue;"&gt;Fourth tab.&lt;/tab&gt;
-&lt;tab index="1"&gt;This is a seperate tab. It demonstrates what happens if a tab has no <code>inline</code> or <code>block</code> attributes defined. If the tab contains a lot of text, it will automatically be forced to a new line, despite extra space being available at the end of the previous line.&lt;/tab&gt;
-&lt;tab index="2"&gt;This seperate tab isn't forced to a new line, since it's short enough.&lt;/tab&gt;
-&lt;tab index="3" inline&gt;This is a seperate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.&lt;/tab&gt;
-&lt;tab index="4" block&gt;Despite fitting on the previous line, the <code>block</code> attribute forces this seperate tab to a new line&lt;/tab&gt;
+&lt;tab index="1"&gt;This is a separate tab. It demonstrates what happens if a tab has no <code>inline</code> or <code>block</code> attributes defined. If the tab contains a lot of text, it will automatically be forced to a new line, despite extra space being available at the end of the previous line.&lt;/tab&gt;
+&lt;tab index="2"&gt;This separate tab isn't forced to a new line, since it's short enough.&lt;/tab&gt;
+&lt;tab index="3" inline&gt;This is a separate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.&lt;/tab&gt;
+&lt;tab index="4" block&gt;Despite fitting on the previous line, the <code>block</code> attribute forces this separate tab to a new line&lt;/tab&gt;
 &lt;/tabs&gt;
 </pre></tab>
 
@@ -389,10 +389,10 @@ This line of text will show for every tab you view. It is not placed within <cod
 <tab name="Default 2" style="background:lightgreen;">Second tab.</tab>
 <tab name="Inline" style="background:salmon;">Third tab.</tab>
 <tab name="Block" style="background:royalblue;">Fourth tab.</tab>
-<tab index="1">This is a seperate tab. It demonstrates what happens if a tab has no <code>inline</code> or <code>block</code> attributes defined. If the tab contains a lot of text, it will automatically be forced to a new line, despite extra space being available at the end of the previous line.</tab>
-<tab index="2">This seperate tab isn't forced to a new line, since it's short enough.</tab>
-<tab index="3" inline>This is a seperate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.</tab>
-<tab index="4" block>Despite fitting on the previous line, the <code>block</code> attribute forces this seperate tab to a new line</tab>
+<tab index="1">This is a separate tab. It demonstrates what happens if a tab has no <code>inline</code> or <code>block</code> attributes defined. If the tab contains a lot of text, it will automatically be forced to a new line, despite extra space being available at the end of the previous line.</tab>
+<tab index="2">This separate tab isn't forced to a new line, since it's short enough.</tab>
+<tab index="3" inline>This is a separate tab that has an <code>inline</code> attribute defined. It will fit in with the text as normal text would, and it fills up any space that is left available after the previous line. This makes tabs with <code>inline</code> attributes a bit better at fitting in with the flow of text.</tab>
+<tab index="4" block>Despite fitting on the previous line, the <code>block</code> attribute forces this separate tab to a new line</tab>
 </tabs>
 
 ==== <code>plain</code> tab interfaces ====
@@ -549,7 +549,7 @@ This inner toggle box is made via the <code>&lt;tag&gt;</code> syntax.
 
 ==== Toggle boxes and dropdowns in tab boxes ====
 
-If you want to place a toggle box or a dropdown inside a tab navigation, and want the toggle box to show up for every tab as opposed to just the tab it's nested in, first a parent <code>&lt;tab&gt;</code> tab must be made, with <code>index="*"</code>, so that the toggle box won't be recognised as a seperate tab content.
+If you want to place a toggle box or a dropdown inside a tab navigation, and want the toggle box to show up for every tab as opposed to just the tab it's nested in, first a parent <code>&lt;tab&gt;</code> tab must be made, with <code>index="*"</code>, so that the toggle box won't be recognised as a separate tab content.
 
 If you want to place a toggle box or dropdown menu inside a tab menu, you can simply place a <code>&lt;tab&gt;</code> tag inside the <code>&lt;tab&gt;</code> tag that functions as a tab. This will restrict toggle boxes and dropdowns to visibility in just one tab though. So, if you want to have a toggle box or dropdown that's visible in every tab, encase it in a <code>&lt;tab&gt;</code> tag with an <code>index="*"</code> set to it.
 
