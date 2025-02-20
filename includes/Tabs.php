@@ -203,7 +203,7 @@ class Tabs {
 		}
 		$containerStyle = '';
 		if ( isset( $attr['container'] ) ) {
-			$containerStyle = htmlspecialchars( $attr['container'] );
+			$containerStyle = htmlspecialchars( Sanitizer::checkCss( $attr['container'] ) );
 		}
 		$container = [
 			"<div$containAttrStr>$css<div class=\"tabs-container\">$label",
@@ -240,7 +240,7 @@ class Tabs {
 		$attrStr = $this->getSafeAttrs( $attr );
 		$containerStyle = '';
 		if ( isset( $attr['container'] ) ) {
-			$containerStyle = htmlspecialchars( $attr['container'] );
+			$containerStyle = htmlspecialchars( Sanitizer::checkCss( $attr['container'] ) );
 		}
 
 		// CLEARING:
@@ -367,11 +367,11 @@ class Tabs {
 		$attrStr = '';
 		foreach ( $safeAttrs as $i ) {
 			if ( isset( $attr[$i] ) ) {
-				$safe[$i] = htmlspecialchars( trim( $attr[$i] ) );
+				$safe[$i] = trim( $attr[$i] );
 				if ( $i == 'style' ) { // escape the urls, to prevent users from loading images from disallowed sites.
-					$safe[$i] = preg_replace( "/[^;]+\s*url\s*\([^\)]+\)[^;]*;?/i", "/*$0*/", $safe[$i] );
+					$safe[$i] = Sanitizer::checkCss( $safe[$i] );
 				}
-				$attrStr .= " $i=\"" . $safe[$i] . '"';
+				$attrStr .= " $i=\"" . htmlspecialchars( $safe[$i] ) . '"';
 			} else {
 				$safe[$i] = '';
 			}
@@ -401,6 +401,12 @@ class Tabs {
 	 * @return bool
 	 */
 	public function createDynamicCss( &$parser ) {
+		// XXX: Sanitize this better?
+		$bgcolor = wfMessage( 'tabs-dropdown-bgcolor' )->text();
+		if ( preg_match( '|[^a-z\d\s\(\)/\.,%\-#]|i', $bgcolor ) !== false ) {
+			$bgcolor = 'white /* Malicious data in tabs-dropdown-bgcolor */';
+		}
+
 		$css = '';
 		$class = [ '', '.tabs-inline', '.tabs-block' ];
 		$style = [ 'inline-block', 'inline', 'block' ];
@@ -417,7 +423,7 @@ class Tabs {
 				'.tabs-dropdown li,' .
 				'.tabs-dropdown ul,' .
 				'.tabs-dropdown ol {' .
-					'background-color: ' . wfMessage( 'tabs-dropdown-bgcolor' ) .
+					'background-color: ' . htmlspecialchars( $bgcolor ) .
 				'}';
 		return "<style type=\"text/css\" id=\"tabs-dynamic-styles\">/*<![CDATA[*/\n/* Dynamically generated tabs styles */\n$css\n/*]]>*/</style>";
 	}
