@@ -1,11 +1,11 @@
-jQuery( function ( $ ) {
+jQuery( ( $ ) => {
 	/**
 	 * Imitates the normal feature in browsers to scroll to an id that has the same id as the url fragment/hash.
 	 * This makes it unnecessary to use actual ids on the tabs, which could cause the same id to occur twice in the same document.
 	 * Does not scroll to exactly the tab's height, but just a bit above it.
 	 */
 	function moveToHash() {
-		var hash = location.hash.slice( 1 ).replace( /_/g, ' ' ).trim();
+		const hash = location.hash.slice( 1 ).replace( /_/g, ' ' ).trim();
 		if ( !hash || $( location.hash ).length ) {
 			return; // if there's no hash defined, or an element on the page with the same hash already, stop looking for tabs
 		}
@@ -24,7 +24,7 @@ jQuery( function ( $ ) {
 	// Credit for this testing method: 2astalavista @ http://stackoverflow.com/a/21095568/1256925
 	// The font will be sans-serif if the :not() property is supported. The margin will be 1px if the sibling selector is supported.
 	if ( $( '#tabs-inputform' ).css( 'font-family' ).replace( /["']/g, '' ) === 'sans-serif' && $( '#tabs-inputform' ).css( 'margin' ) === '1px' ) {
-		$( function () {
+		$( () => {
 			$( 'body' ).addClass( 'tabs-oldbrowserscript' ); // Make the unselected tabs hide when the browser loads this script
 			$( '.tabs-label' ).on( 'click', function ( e ) {
 				$( '#' + $( this ).attr( 'for' ) ).trigger( 'click' ); e.preventDefault();
@@ -55,12 +55,12 @@ jQuery( function ( $ ) {
 	 * Browser detection based on http://stackoverflow.com/a/15591516/1256925
 	 * Idea for the use of <detail> and <summary> based on http://stackoverflow.com/q/21357641/1256925
 	 */
-	var nua = navigator.userAgent,
-		isAndroid = ( nua.indexOf( 'Mozilla/5.0' ) > -1 && nua.indexOf( 'Android ' ) > -1 && nua.indexOf( 'AppleWebKit' ) > -1 && nua.indexOf( 'Chrome' ) === -1 );
+	const nua = navigator.userAgent,
+		isAndroid = ( nua.includes( 'Mozilla/5.0' ) && nua.includes( 'Android ' ) && nua.includes( 'AppleWebKit' ) && !nua.includes( 'Chrome' ) );
 	function replaces() { // General replacement function for both tags
-		var tagName = $( this ).is( '.tabs-container' ) ? 'details' : 'summary', // determine the required tag name
+		const tagName = $( this ).is( '.tabs-container' ) ? 'details' : 'summary', // determine the required tag name
 			$newNode = $( '<' + tagName + '/>' ).html( $( this ).html() );
-		for ( var i = 0; i < this.attributes.length; i++ ) { // copy all attributes from the original element
+		for ( let i = 0; i < this.attributes.length; i++ ) { // copy all attributes from the original element
 			if ( this.attributes[ i ].nodeName === 'for' ) {
 				continue; // don't copy the label's for="" attribute, since it's not needed here.
 			}
