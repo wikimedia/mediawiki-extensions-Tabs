@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Revi"
+			"Revi",
+			"Tensama0415"
 		]
 	},
+	"tabs-desc": "탭 레이아웃을 만들기 위한 <code>&lt;tabs&gt;</code>와 <code>&lt;tab&gt;</code>를 추가합니다",
 	"tabs-tab-label": "탭 $1",
 	"tabs-toggle-open": "내용 보기",
-	"tabs-toggle-close": "내용 숨기기"
+	"tabs-toggle-close": "내용 숨기기",
+	"tabs-dropdown-label": "드롭다운 표시"
 }
