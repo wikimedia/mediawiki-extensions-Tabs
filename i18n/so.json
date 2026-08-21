@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"tabs-desc": "Waxay ku dartaa summadaha <code>&lt;tabs&gt;</code> iyo <code>&lt;tab&gt;</code> si loo abuuro qaab-dhismeed leh tababyo",
+	"tabs-tab-label": "Taabka $1",
+	"tabs-toggle-open": "Muuji nuxurka",
+	"tabs-toggle-close": "Qari nuxurka",
+	"tabs-dropdown-label": "Muuji liiska hoos u dhaca ah"
+}
