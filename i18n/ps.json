@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"tabs-desc": "د ريښکه‌شوې هډوانې جوړولو لپاره <code>&lt;tabs&gt;</code> او <code>&lt;tab&gt;</code> نښلنونه ورگډوي",
+	"tabs-tab-label": "$1 ريښکه",
+	"tabs-toggle-open": "منځپانگه ښودل",
+	"tabs-toggle-close": "منځپانگه پټول",
+	"tabs-dropdown-label": "غورځېدنه ښودل"
+}
