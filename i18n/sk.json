@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"tabs-desc": "Pridáva značky <code>&lt;tabs&gt;</code> a <code>&lt;tab&gt;</code> na vytváranie rozloženia s kartami",
+	"tabs-tab-label": "Karta $1",
+	"tabs-toggle-open": "Zobraziť obsah",
+	"tabs-toggle-close": "Skryť obsah",
+	"tabs-dropdown-label": "Zobraziť rozbaľovaciu ponuku"
+}
